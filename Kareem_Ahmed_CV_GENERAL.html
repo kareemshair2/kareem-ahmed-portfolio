@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kareem Ahmed — Data Analyst | CV</title>
+<meta name="description" content="Curriculum vitae of Kareem Ahmed — Data Analyst & BI Developer (Python, SQL, Power BI, Tableau, Excel, AI automation), Menoufia, Egypt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Archivo:wght@400..700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   STANDARD / GENERAL EDITION — one page-ready CV
+   Ink #014976 · Accent #FBAE42 · Paper #F4F3EF
+   Same identity as the portfolio, no ornament.
+   ══════════════════════════════════════════════ */
+:root{
+  --blue:#014976;
+  --blue-deep:#01304E;
+  --blue-black:#011C2F;
+  --amber:#FBAE42;
+  --amber-deep:#E08C1B;
+  --amber-soft:rgba(251,174,66,0.18);
+  --paper:#F4F3EF;
+  --card:#FBFAF7;
+  --ink:#0A1E2E;
+  --ink-soft:#3E5260;
+  --muted:#6D7B85;
+  --line:rgba(1,73,118,0.16);
+  --line-2:rgba(1,73,118,0.32);
+  --font-d:'Fraunces',Georgia,serif;
+  --font-b:'Archivo','Helvetica Neue',sans-serif;
+  --font-m:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-b);
+  background:var(--paper);
+  color:var(--ink-soft);
+  font-size:15.5px;
+  line-height:1.7;
+  padding:26px 16px 60px;
+}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--amber-deep)}
+img{max-width:100%;display:block}
+::selection{background:var(--amber);color:var(--blue-black)}
+
+.sheet{
+  max-width:960px;margin:0 auto;background:var(--card);
+  border:1px solid var(--line);
+  box-shadow:0 20px 60px rgba(1,73,118,.12);
+  padding:42px clamp(20px,4vw,52px) 34px;
+}
+
+/* ── Header ── */
+.cv-head{
+  display:grid;grid-template-columns:1fr auto;gap:24px 28px;align-items:start;
+  padding-bottom:22px;border-bottom:3px solid var(--blue);position:relative;
+}
+.cv-head::after{
+  content:"";position:absolute;left:0;bottom:-9px;width:120px;height:6px;background:var(--amber);
+}
+.cv-eyebrow{
+  font-family:var(--font-m);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--amber-deep);margin-bottom:8px;
+}
+.cv-name{
+  font-family:var(--font-d);font-weight:900;font-size:clamp(1.9rem,5vw,2.9rem);
+  line-height:1.02;letter-spacing:-.02em;color:var(--blue);
+}
+.cv-role{
+  font-family:var(--font-m);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink);margin-top:9px;
+}
+.cv-contact{
+  margin-top:10px;font-size:.86rem;color:var(--ink-soft);
+  display:flex;flex-wrap:wrap;gap:6px 14px;
+}
+.cv-contact span{white-space:nowrap}
+.cv-contact .dot{color:var(--line-2)}
+.cv-right{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.cv-photo{
+  width:116px;height:116px;object-fit:cover;object-position:center 18%;
+  border:1px solid var(--line-2);box-shadow:6px 6px 0 var(--amber-soft);
+}
+.cv-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.btn{
+  font-family:var(--font-m);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+  padding:9px 14px;border:1px solid var(--blue);background:var(--blue);color:var(--paper);
+  cursor:pointer;transition:all .22s ease;
+}
+.btn.ghost{background:transparent;color:var(--blue)}
+.btn:hover{background:var(--amber);border-color:var(--amber);color:var(--blue-black)}
+
+/* ── Sections ── */
+.cv-sec{padding-top:26px}
+.cv-h{
+  display:flex;align-items:baseline;gap:12px;
+  font-family:var(--font-m);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--blue);border-bottom:1px solid var(--line-2);padding-bottom:7px;margin-bottom:16px;
+}
+.cv-h b{color:var(--amber-deep);font-weight:600;letter-spacing:.1em;text-transform:none;font-size:.62rem}
+.cv-h i{flex:1;height:1px;background:var(--line)}
+.cv-h em{font-style:normal;color:var(--muted);font-size:.6rem;letter-spacing:.2em}
+
+/* Profile */
+.profile-lead{
+  font-family:var(--font-d);font-size:1.06rem;line-height:1.6;color:var(--ink);font-weight:500;
+}
+.profile p{margin-top:12px;font-size:.93rem}
+.pullquote{
+  margin-top:16px;border-left:3px solid var(--amber);background:rgba(251,174,66,.09);
+  padding:11px 16px;font-size:.9rem;color:var(--blue-deep);
+}
+.facts{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:8px 22px;margin-top:16px;
+}
+.fact{
+  display:flex;gap:10px;align-items:baseline;font-size:.83rem;
+  border-bottom:1px dotted var(--line);padding-bottom:6px;
+}
+.fact dt{
+  font-family:var(--font-m);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);min-width:96px;
+}
+.fact dd{color:var(--ink);font-weight:600}
+
+/* Skills */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px 30px}
+.skill{border-top:1px solid var(--line);padding-top:11px}
+.skill-name{
+  font-family:var(--font-d);font-weight:700;font-size:1rem;color:var(--blue);letter-spacing:-.01em;
+}
+.skill-note{font-size:.8rem;color:var(--muted);margin-top:2px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.chip{
+  font-family:var(--font-m);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 8px;border:1px solid var(--line-2);color:var(--ink-soft);background:#fff;
+}
+.chip.solid{background:var(--blue);border-color:var(--blue);color:var(--paper)}
+.bar{height:5px;background:rgba(1,73,118,.13);margin-top:10px;position:relative;overflow:hidden}
+.bar i{position:absolute;inset:0 auto 0 0;background:var(--blue);width:var(--w)}
+.also{
+  margin-top:16px;font-family:var(--font-m);font-size:.62rem;letter-spacing:.06em;color:var(--muted);
+  border-top:1px dotted var(--line);padding-top:9px;
+}
+.also b{color:var(--blue)}
+
+/* Experience */
+.exp{display:grid;gap:15px}
+.exp-item{
+  display:grid;grid-template-columns:186px 1fr;gap:6px 22px;
+  border-left:2px solid var(--line-2);padding-left:16px;
+}
+.exp-item:first-child{border-left-color:var(--amber)}
+.exp-date{
+  font-family:var(--font-m);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-deep);
+}
+.exp-org{font-size:.78rem;color:var(--muted);margin-top:3px}
+.exp-role{
+  font-family:var(--font-d);font-weight:700;font-size:1.02rem;color:var(--blue);
+}
+.tag-vol{
+  font-family:var(--font-m);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;
+  background:var(--amber-soft);color:var(--blue-deep);padding:2px 6px;margin-left:8px;vertical-align:middle;
+}
+.exp-list{margin-top:7px;display:grid;gap:4px}
+.exp-list li{
+  position:relative;padding-left:15px;font-size:.86rem;line-height:1.6;
+}
+.exp-list li::before{
+  content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;background:var(--amber);
+}
+.exp-list strong{color:var(--ink)}
+
+/* Projects */
+.proj-list{display:grid;gap:11px}
+.proj{
+  display:grid;grid-template-columns:1fr auto;gap:4px 18px;align-items:baseline;
+  border-bottom:1px dotted var(--line);padding-bottom:9px;
+}
+.proj-name{
+  font-family:var(--font-d);font-weight:700;font-size:.98rem;color:var(--blue);
+}
+.proj-desc{font-size:.84rem;grid-column:1}
+.proj-meta{
+  font-family:var(--font-m);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);text-align:right;white-space:nowrap;grid-row:1;grid-column:2;
+}
+.proj a{
+  font-family:var(--font-m);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--amber-deep);grid-row:2;grid-column:2;text-align:right;white-space:nowrap;
+}
+.proj a:hover{color:var(--blue)}
+
+/* Education */
+.edu{
+  display:grid;grid-template-columns:1fr auto;gap:4px 18px;
+  border:1px solid var(--line-2);border-left:4px solid var(--amber);
+  background:#fff;padding:15px 18px;
+}
+.edu-eyebrow{
+  font-family:var(--font-m);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber-deep);
+}
+.edu-title{font-family:var(--font-d);font-weight:700;font-size:1.04rem;color:var(--blue);margin-top:3px}
+.edu-org{font-size:.85rem;margin-top:2px}
+.edu-date{
+  font-family:var(--font-m);font-size:.62rem;letter-spacing:.1em;color:var(--muted);
+  text-align:right;white-space:nowrap;grid-row:1/3;grid-column:2;align-self:start;
+}
+.edu-desc{font-size:.83rem;color:var(--muted);margin-top:7px;grid-column:1}
+
+/* Two columns: competencies + languages */
+.duo{display:grid;grid-template-columns:1.35fr 1fr;gap:26px}
+.comp{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:7px 16px}
+.comp div{
+  font-size:.83rem;color:var(--ink);border-bottom:1px dotted var(--line);padding-bottom:5px;
+  display:flex;gap:8px;align-items:baseline;
+}
+.comp div::before{content:"";width:7px;height:7px;background:var(--blue);flex:none;transform:translateY(-1px)}
+.lang{display:grid;gap:11px}
+.lang-row{display:grid;grid-template-columns:auto 1fr auto;gap:6px 12px;align-items:center}
+.lang-name{font-family:var(--font-d);font-weight:700;color:var(--blue);font-size:.95rem}
+.lang-level{
+  font-family:var(--font-m);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+}
+.lang-bar{grid-column:1/4;height:5px;background:rgba(1,73,118,.13);position:relative;overflow:hidden}
+.lang-bar i{position:absolute;inset:0 auto 0 0;background:var(--blue);width:var(--w)}
+
+/* Footer */
+.cv-foot{
+  margin-top:28px;padding-top:14px;border-top:1px solid var(--line-2);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-family:var(--font-m);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+}
+.cv-foot a{color:var(--blue)}
+
+/* ── Screen-only extras ── */
+.hint{
+  max-width:960px;margin:14px auto 0;font-family:var(--font-m);font-size:.6rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:center;
+}
+@media (max-width:720px){
+  body{padding:0}
+  .sheet{border:none;box-shadow:none;padding:26px 18px}
+  .cv-head{grid-template-columns:1fr}
+  .cv-right{align-items:flex-start;flex-direction:row;justify-content:space-between;width:100%}
+  .exp-item,.edu{grid-template-columns:1fr}
+  .edu-date{grid-row:auto;grid-column:1;text-align:left}
+  .duo{grid-template-columns:1fr}
+  .proj{grid-template-columns:1fr}
+  .proj-meta,.proj a{grid-row:auto;grid-column:1;text-align:left}
+}
+
+/* ── Print / PDF ── */
+@page{size:A4;margin:12mm}
+@media print{
+  body{background:#fff;padding:0;font-size:11.4pt;line-height:1.55}
+  .sheet{max-width:none;margin:0;padding:0;border:none;box-shadow:none;background:#fff}
+  .hint,.cv-actions{display:none!important}
+  .cv-sec{padding-top:14px;break-inside:avoid}
+  .skill,.exp-item,.proj,.edu,.fact,.lang-row{break-inside:avoid}
+  .cv-head{padding-bottom:14px}
+  .profile-lead{font-size:11.6pt}
+  .cv-name{font-size:26pt}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<main class="sheet">
+
+  <!-- ══ HEADER ══ -->
+  <header class="cv-head">
+    <div>
+      <div class="cv-eyebrow">Curriculum Vitae — 2026</div>
+      <h1 class="cv-name">Kareem Ahmed<br>Abdelwahab</h1>
+      <div class="cv-role">Data Analyst · Power BI &amp; Tableau Developer</div>
+      <div class="cv-contact">
+        <span>Menoufia, Egypt</span><span class="dot">/</span>
+        <span><a href="mailto:Kareem.shair2@gmail.com">Kareem.shair2@gmail.com</a></span><span class="dot">/</span>
+        <span><a href="tel:+201032894453">(+20) 01032894453</a></span><span class="dot">/</span>
+        <span><a href="https://github.com/kareemshair2" target="_blank" rel="noopener">github.com/kareemshair2</a></span>
+      </div>
+    </div>
+    <div class="cv-right">
+      <img class="cv-photo" src="WhatsApp Image 2026-10-06 at 7.38.26 PM.jpeg" alt="Portrait of Kareem Ahmed">
+      <div class="cv-actions">
+        <button class="btn" type="button" onclick="window.print()">Print / Save PDF</button>
+        <a class="btn ghost" href="Kareem_Ahmed_CV.html">Portfolio version</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ PROFILE ══ -->
+  <section class="cv-sec profile">
+    <h2 class="cv-h"><span>01</span> Profile <i></i> <em>Summary</em></h2>
+    <p class="profile-lead">
+      Data Analyst with practical experience in data management, business process automation and
+      AI-powered solutions — building the full chain from raw extract to governed model to a
+      dashboard a non-technical manager can actually read.
+    </p>
+    <p>
+      Day-to-day stack: <strong>Python (Pandas, NumPy, Matplotlib, Seaborn)</strong> for analysis,
+      <strong>SQL</strong> for modelling and transformation, <strong>Power Query &amp; Power Pivot</strong>
+      for repeatable ETL and DAX data models, and <strong>Power BI, Tableau &amp; Looker Studio</strong>
+      for the visual layer — with <strong>Excel</strong> where it is still the fastest tool in the room.
+    </p>
+    <p>
+      Alongside the technical work: <strong>data operations for volunteer programs across Egyptian
+      universities</strong> — centralised databases, automated reporting and dashboards used by
+      leadership for real-time decisions.
+    </p>
+    <div class="pullquote">
+      Operational problems rarely need more data. They need the right model, the right chart,
+      and one automated flow nobody has to babysit.
+    </div>
+    <dl class="facts">
+      <div class="fact"><dt>Role</dt><dd>Data Analyst / BI</dd></div>
+      <div class="fact"><dt>Focus</dt><dd>Analytics · BI · Automation</dd></div>
+      <div class="fact"><dt>Core tools</dt><dd>Python · SQL · Power BI</dd></div>
+      <div class="fact"><dt>Education</dt><dd>B.Sc. EE &amp; CS — Menoufia</dd></div>
+      <div class="fact"><dt>Languages</dt><dd>Arabic · English (B2)</dd></div>
+      <div class="fact"><dt>Availability</dt><dd>Open to opportunities</dd></div>
+    </dl>
+  </section>
+
+  <!-- ══ TECHNICAL STACK ══ -->
+  <section class="cv-sec">
+    <h2 class="cv-h"><span>02</span> Technical Stack <i></i> <em>Tools · Libraries · Platforms</em></h2>
+    <div class="skills-grid">
+
+      <div class="skill">
+        <div class="skill-name">Python &amp; Data Analysis</div>
+        <div class="skill-note">Cleaning, wrangling, statistics and visualisation — notebook to pipeline.</div>
+        <div class="chips"><span class="chip solid">Python</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Matplotlib</span><span class="chip">Seaborn</span><span class="chip">Plotly</span><span class="chip">SciPy</span><span class="chip">Scikit-learn</span><span class="chip">Jupyter</span></div>
+        <div class="bar"><i style="--w:92%"></i></div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-name">SQL &amp; Databases</div>
+        <div class="skill-note">Query design, modelling and optimisation across relational stores.</div>
+        <div class="chips"><span class="chip solid">SQL</span><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">SQLite</span><span class="chip">Joins &amp; CTEs</span><span class="chip">Window Functions</span><span class="chip">Stored Procedures</span><span class="chip">Query Tuning</span></div>
+        <div class="bar"><i style="--w:90%"></i></div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-name">Power BI &amp; DAX</div>
+        <div class="skill-note">Semantic models, DAX measures and executive-grade report design.</div>
+        <div class="chips"><span class="chip solid">Power BI</span><span class="chip">DAX</span><span class="chip">Data Modelling</span><span class="chip">Power Query (M)</span><span class="chip">Row-Level Security</span><span class="chip">KPI Design</span></div>
+        <div class="bar"><i style="--w:88%"></i></div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-name">Excel, Power Pivot &amp; Power Query</div>
+        <div class="skill-note">Advanced spreadsheet engineering — the fastest route from file to answer.</div>
+        <div class="chips"><span class="chip solid">Excel (Advanced)</span><span class="chip">Power Pivot</span><span class="chip">Power Query</span><span class="chip">PivotTables</span><span class="chip">DAX in Excel</span><span class="chip">VBA / Macros</span><span class="chip">Google Sheets</span></div>
+        <div class="bar"><i style="--w:94%"></i></div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-name">Tableau &amp; Looker Studio</div>
+        <div class="skill-note">Exploratory visuals and always-on reporting for stakeholders.</div>
+        <div class="chips"><span class="chip solid">Tableau</span><span class="chip solid">Looker Studio</span><span class="chip">Calculated Fields</span><span class="chip">Blends</span><span class="chip">Dashboards</span><span class="chip">Storytelling</span></div>
+        <div class="bar"><i style="--w:86%"></i></div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-name">AI &amp; Automation</div>
+        <div class="skill-note">LLM-assisted analysis, prompt systems and hands-free workflows.</div>
+        <div class="chips"><span class="chip solid">AI / GenAI</span><span class="chip">Prompt Engineering</span><span class="chip">AI Workflows</span><span class="chip">API Integration</span><span class="chip">Google Apps Script</span><span class="chip">Process Automation</span><span class="chip">KoboToolbox</span></div>
+        <div class="bar"><i style="--w:89%"></i></div>
+      </div>
+
+    </div>
+    <div class="also">Also fluent in: Git &amp; GitHub · KoboToolbox · Google Workspace · C fundamentals &nbsp;—&nbsp; Stack updated <b>2026</b></div>
+  </section>
+
+  <!-- ══ EXPERIENCE ══ -->
+  <section class="cv-sec">
+    <h2 class="cv-h"><span>03</span> Experience <i></i> <em>2024 — Present</em></h2>
+    <div class="exp">
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-date">Oct 2025 — Present</div>
+          <div class="exp-org">Life Makers Student Families — Egyptian Universities</div>
+        </div>
+        <div>
+          <div class="exp-role">Data Management Lead <span class="tag-vol">Volunteer</span></div>
+          <ul class="exp-list">
+            <li>Lead the <strong>data management process</strong> for volunteer activities across multiple Egyptian universities.</li>
+            <li>Build and maintain centralised data systems for reporting and operational tracking.</li>
+            <li>Design automated workflows in Google Workspace that cut manual work and human error.</li>
+            <li>Create dashboards and reports leadership uses to monitor performance in real time.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-date">Oct 2025 — Present</div>
+          <div class="exp-org">Life Makers Foundation — Egypt</div>
+        </div>
+        <div>
+          <div class="exp-role">Assistant to the IT Board <span class="tag-vol">Volunteer</span></div>
+          <ul class="exp-list">
+            <li>Support the IT Board in planning and implementing technical initiatives.</li>
+            <li>Contribute to <strong>digital transformation</strong> projects and workflow improvement.</li>
+            <li>Assist in developing internal systems and automation for organizational operations.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-date">Oct 2024 — Present</div>
+          <div class="exp-org">Life Makers Association — Menoufia</div>
+        </div>
+        <div>
+          <div class="exp-role">IT &amp; Operations Coordinator <span class="tag-vol">Volunteer</span></div>
+          <ul class="exp-list">
+            <li>Managed IT infrastructure and digital systems across departments.</li>
+            <li>Coordinated operational activities and supported fundraising campaigns.</li>
+            <li>Developed digital solutions for case management, reporting and volunteer operations.</li>
+            <li>Provided technical support for governorate-level and central projects.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-date">Oct 2024 — Dec 2024</div>
+          <div class="exp-org">Shebin El-Kom Youth Center</div>
+        </div>
+        <div>
+          <div class="exp-role">IT Administrator</div>
+          <ul class="exp-list">
+            <li>Provided technical support and maintained IT systems.</li>
+            <li>Resolved hardware and software issues while supporting daily operations.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ SELECTED PROJECTS ══ -->
+  <section class="cv-sec">
+    <h2 class="cv-h"><span>04</span> Selected Projects <i></i> <em>42 repositories · 40+ shipped</em></h2>
+    <div class="proj-list">
+
+      <div class="proj">
+        <div class="proj-name">Customer Analytics Overview</div>
+        <div class="proj-meta">Power BI · DAX</div>
+        <div class="proj-desc">Executive analytics report: acquisition, retention and revenue signals with drill-through from KPI to segment.</div>
+        <a href="https://github.com/kareemshair2" target="_blank" rel="noopener">Source →</a>
+      </div>
+
+      <div class="proj">
+        <div class="proj-name">Sehatak — Health Forms System</div>
+        <div class="proj-meta">HTML · Apps Script</div>
+        <div class="proj-desc">Medical file and forms portal: convoy drugs, transfers, contracts, aid and monthly reports.</div>
+        <a href="https://github.com/kareemshair2/sehatak-health-forms" target="_blank" rel="noopener">Source →</a>
+      </div>
+
+      <div class="proj">
+        <div class="proj-name">GAZB Menoufia — Volunteer Acquisition Analytics</div>
+        <div class="proj-meta">Apps Script · ECharts</div>
+        <div class="proj-desc">Seven analytical pages over volunteer records with 14 live filters and instant search.</div>
+        <a href="https://github.com/kareemshair2/dashboard_GAZB_MENOUFIA" target="_blank" rel="noopener">Source →</a>
+      </div>
+
+      <div class="proj">
+        <div class="proj-name">Kobo Dashboard — Activations &amp; Registrations</div>
+        <div class="proj-meta">KoboToolbox · Sheets</div>
+        <div class="proj-desc">Live KPI board fed straight from KoboToolbox through an Apps Script API.</div>
+        <a href="https://github.com/kareemshair2/kobo-dashboard" target="_blank" rel="noopener">Source →</a>
+      </div>
+
+      <div class="proj">
+        <div class="proj-name">Madarat | Roots Camp Registration</div>
+        <div class="proj-meta">Apps Script · GitHub Pages</div>
+        <div class="proj-desc">Full electronic registration: track quotas, settings sheet, API and static front end.</div>
+        <a href="https://github.com/kareemshair2/CAMP_ITUELM" target="_blank" rel="noopener">Source →</a>
+      </div>
+
+      <div class="proj">
+        <div class="proj-name">AutoFlex Dashboard</div>
+        <div class="proj-meta">Chart.js · Sheets</div>
+        <div class="proj-desc">Arabic RTL finance operations dashboard: expenses, procurement, invoices and returns.</div>
+        <a href="https://github.com/kareemshair2/autoflex-dashboard" target="_blank" rel="noopener">Source →</a>
+      </div>
+
+      <div class="proj">
+        <div class="proj-name">Frame Studio</div>
+        <div class="proj-meta">Canvas · JavaScript</div>
+        <div class="proj-desc">In-browser photo frame editor with export, sharing and a Drive-backed admin panel.</div>
+        <a href="https://github.com/kareemshair2/frames" target="_blank" rel="noopener">Source →</a>
+      </div>
+
+      <div class="proj">
+        <div class="proj-name">SKIN-VISION — Medical RAG System</div>
+        <div class="proj-meta">Python · Docker</div>
+        <div class="proj-desc">Clinical decision support: ingestion, embeddings, retrieval and generation for dermatology.</div>
+        <a href="https://github.com/kareemshair2/SKIN-VISION" target="_blank" rel="noopener">Source →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ EDUCATION ══ -->
+  <section class="cv-sec">
+    <h2 class="cv-h"><span>05</span> Education <i></i> <em>Academic Background</em></h2>
+    <div class="edu">
+      <div class="edu-eyebrow">Undergraduate · Engineering</div>
+      <div class="edu-title">B.Sc. in Electrical Engineering &amp; Computer Science</div>
+      <div class="edu-org">Faculty of Electronic Engineering, Menoufia University</div>
+      <div class="edu-date">Expected 2029</div>
+      <div class="edu-desc">
+        Engineering foundation with a focus on computer science — bridging hardware discipline with
+        data analysis, business intelligence, automation and applied AI.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COMPETENCIES + LANGUAGES ══ -->
+  <section class="cv-sec">
+    <div class="duo">
+      <div>
+        <h2 class="cv-h"><span>06</span> Core Competencies <i></i></h2>
+        <div class="comp">
+          <div>Analytical Thinking</div><div>Problem Solving</div><div>Data-Driven Decisions</div>
+          <div>Leadership</div><div>Team Collaboration</div><div>Communication</div>
+          <div>Project Coordination</div><div>Process Improvement</div><div>Critical Thinking</div>
+          <div>Fast Learning</div><div>Adaptability</div><div>Attention to Detail</div>
+        </div>
+      </div>
+      <div>
+        <h2 class="cv-h"><span>07</span> Languages <i></i></h2>
+        <div class="lang">
+          <div class="lang-row">
+            <div class="lang-name">Arabic</div><div class="lang-level">Native</div>
+            <div class="lang-bar"><i style="--w:100%"></i></div>
+          </div>
+          <div class="lang-row">
+            <div class="lang-name">English</div><div class="lang-level">B2</div>
+            <div class="lang-bar"><i style="--w:78%"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT ══ -->
+  <section class="cv-sec">
+    <h2 class="cv-h"><span>08</span> Contact <i></i> <em>Replies within 24 hours</em></h2>
+    <div class="cv-contact" style="margin-top:0">
+      <span><a href="mailto:Kareem.shair2@gmail.com">Kareem.shair2@gmail.com</a></span><span class="dot">/</span>
+      <span><a href="tel:+201032894453">(+20) 01032894453</a></span><span class="dot">/</span>
+      <span>Menoufia, Egypt</span><span class="dot">/</span>
+      <span><a href="https://github.com/kareemshair2" target="_blank" rel="noopener">github.com/kareemshair2</a></span>
+    </div>
+  </section>
+
+  <footer class="cv-foot">
+    <span>Kareem Ahmed Abdelwahab — Data Analyst / BI</span>
+    <span>Full portfolio: <a href="Kareem_Ahmed_CV.html">Kareem_Ahmed_CV.html</a></span>
+    <span>Ed. 2026</span>
+  </footer>
+
+</main>
+
+<p class="hint">Tip — use “Print / Save PDF” for a clean two-page A4 copy</p>
+
+</body>
+</html>

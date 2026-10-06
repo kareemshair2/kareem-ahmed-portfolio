@@ -1,0 +1,2356 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kareem Ahmed — Data Analyst | Mission Control Edition</title>
+<meta name="description" content="Portfolio of Kareem Ahmed Abdelwahab — Data Analyst working in Python, SQL, Power BI, Tableau, Excel, Power Query/Power Pivot and AI-driven automation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&family=Chivo:wght@300..700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   AESTHETIC DIRECTION — "MISSION CONTROL"
+   Retro-futuristic instrument panel
+   Ink #014976 · Signal #FBAE42 · Paper #F4F3EF
+   ══════════════════════════════════════════════ */
+:root{
+  --bg:#011A2C;
+  --bg-2:#011524;
+  --panel:#04293F;
+  --panel-2:#063451;
+  --blue:#014976;
+  --blue-lt:#0B6A9F;
+  --amber:#FBAE42;
+  --amber-dk:#D98A1D;
+  --paper:#F4F3EF;
+  --ink:rgba(244,243,239,.76);
+  --muted:rgba(244,243,239,.45);
+  --line:rgba(244,243,239,.14);
+  --line-2:rgba(244,243,239,.32);
+  --shadow:0 24px 60px rgba(0,0,0,.45);
+  --r:2px;
+  --t:260ms cubic-bezier(.4,0,.2,1);
+  --d:'Syne',sans-serif;
+  --b:'Chivo','Helvetica Neue',sans-serif;
+  --m:'IBM Plex Mono',monospace;
+  --rail:66px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--bg-2)}
+::-webkit-scrollbar-thumb{background:var(--blue-lt);border:3px solid var(--bg-2)}
+::selection{background:var(--amber);color:var(--bg)}
+body{
+  font-family:var(--b);background:var(--bg);color:var(--ink);
+  line-height:1.75;overflow-x:hidden;font-size:16px;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+ul{list-style:none}
+
+/* ── Atmosphere ── */
+.fx-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    repeating-linear-gradient(90deg,rgba(11,106,159,.22) 0 1px,transparent 1px 88px),
+    repeating-linear-gradient(0deg,rgba(11,106,159,.16) 0 1px,transparent 1px 88px);
+  mask-image:radial-gradient(ellipse 130% 100% at 50% 0%,#000 25%,transparent 88%);
+  -webkit-mask-image:radial-gradient(ellipse 130% 100% at 50% 0%,#000 25%,transparent 88%);
+}
+.fx-glow{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(760px 460px at 88% -6%,rgba(251,174,66,.16),transparent 62%),
+    radial-gradient(900px 620px at 4% 104%,rgba(1,73,118,.55),transparent 66%);
+}
+.fx-scan{
+  position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.35;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.30) 0 1px,transparent 1px 3px);
+  mix-blend-mode:multiply;
+}
+.fx-grain{
+  position:fixed;inset:0;z-index:9001;pointer-events:none;opacity:.06;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:220px 220px;
+}
+.page{position:relative;z-index:2;margin-left:var(--rail)}
+.hazard{
+  height:16px;background:repeating-linear-gradient(-45deg,var(--amber) 0 15px,transparent 15px 30px);
+  opacity:.85;
+}
+
+/* ── Boot loader ── */
+.boot{
+  position:fixed;inset:0;z-index:99999;background:var(--bg-2);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;
+  transition:opacity .5s ease,visibility .5s ease;
+}
+.boot.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.boot-mark{
+  width:74px;height:74px;display:grid;place-items:center;position:relative;
+  font-family:var(--d);font-weight:800;font-size:1.7rem;color:var(--bg);
+  background:var(--amber);clip-path:polygon(0 0,100% 0,100% 74%,74% 100%,0 100%);
+}
+.boot-mark::after{
+  content:'';position:absolute;inset:-10px;border:1px dashed rgba(251,174,66,.6);
+  animation:spin 4s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.boot-cap{font-family:var(--m);font-size:.62rem;letter-spacing:.4em;color:var(--amber);text-transform:uppercase}
+.boot-bar{width:210px;height:6px;background:rgba(244,243,239,.10);overflow:hidden}
+.boot-bar i{display:block;height:100%;width:42%;background:var(--amber);animation:slide 1.05s ease-in-out infinite}
+@keyframes slide{0%{transform:translateX(-110%)}100%{transform:translateX(330%)}}
+
+/* ── Left rail ── */
+.rail{
+  position:fixed;left:0;top:0;bottom:0;width:var(--rail);z-index:600;
+  background:rgba(1,21,36,.92);backdrop-filter:blur(10px);
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;align-items:center;justify-content:space-between;
+  padding:14px 0 18px;
+}
+.rail-logo{
+  width:40px;height:40px;display:grid;place-items:center;background:var(--amber);color:var(--bg);
+  font-family:var(--d);font-weight:800;font-size:1.05rem;clip-path:polygon(0 0,100% 0,100% 72%,72% 100%,0 100%);
+}
+.rail-nav{display:flex;flex-direction:column;gap:16px;align-items:center}
+.rail-nav a{
+  font-family:var(--m);font-size:.58rem;letter-spacing:.1em;color:var(--muted);
+  writing-mode:vertical-rl;transform:rotate(180deg);text-transform:uppercase;
+  transition:color var(--t);position:relative;
+}
+.rail-nav a::after{
+  content:'';position:absolute;left:-9px;top:0;bottom:0;width:2px;background:var(--amber);
+  transform:scaleY(0);transition:transform var(--t);
+}
+.rail-nav a:hover,.rail-nav a.active{color:var(--amber)}
+.rail-nav a.active::after{transform:scaleY(1)}
+.rail-foot{
+  font-family:var(--m);font-size:.55rem;letter-spacing:.26em;color:var(--muted);
+  writing-mode:vertical-rl;transform:rotate(180deg);text-transform:uppercase;
+}
+.rail-prog{position:absolute;left:0;top:0;width:2px;background:var(--amber);height:0}
+
+/* ── Top bar ── */
+.bar{
+  position:fixed;top:0;left:var(--rail);right:0;z-index:500;height:62px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:0 clamp(16px,3vw,42px);
+  background:rgba(1,26,44,.86);backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;transition:all var(--t);
+}
+.bar.stuck{border-bottom-color:var(--line);box-shadow:0 14px 34px rgba(0,0,0,.4)}
+.bar-brand{display:flex;align-items:center;gap:12px;font-family:var(--d);font-weight:700;color:var(--paper);font-size:.92rem;letter-spacing:.02em}
+.bar-brand .dot{width:8px;height:8px;background:var(--amber);animation:blink 1.6s steps(1) infinite}
+@keyframes blink{50%{opacity:.15}}
+.bar-links{display:flex;gap:2px}
+.bar-links a{
+  font-family:var(--m);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);padding:9px 12px;position:relative;transition:color var(--t);
+}
+.bar-links a::after{
+  content:'';position:absolute;left:12px;right:12px;bottom:5px;height:2px;background:var(--amber);
+  transform:scaleX(0);transform-origin:left;transition:transform var(--t);
+}
+.bar-links a:hover,.bar-links a.active{color:var(--paper)}
+.bar-links a:hover::after,.bar-links a.active::after{transform:scaleX(1)}
+.bar-cta{
+  font-family:var(--m);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+  background:var(--amber);color:var(--bg);padding:11px 18px;transition:all var(--t);
+}
+.bar-cta:hover{background:var(--paper);transform:translateY(-2px)}
+.burger{display:none;background:none;border:1px solid var(--line-2);width:40px;height:38px;color:var(--paper);cursor:pointer}
+
+/* ── Layout helpers ── */
+.wrap{max-width:1260px;margin:0 auto;width:100%}
+section{padding:clamp(72px,8vw,118px) clamp(16px,4vw,52px);position:relative}
+.sec-head{margin-bottom:clamp(34px,4vw,56px)}
+.sec-code{
+  display:flex;align-items:center;gap:16px;font-family:var(--m);font-size:.64rem;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--amber);margin-bottom:22px;
+}
+.sec-code .ln{flex:1;height:1px;background:var(--line)}
+.sec-code .dim{color:var(--muted);letter-spacing:.18em}
+.sec-title{
+  font-family:var(--d);font-weight:800;color:var(--paper);letter-spacing:-.035em;
+  font-size:clamp(2.1rem,5.6vw,4.2rem);line-height:.98;text-transform:uppercase;
+}
+.sec-title em{font-style:normal;color:transparent;-webkit-text-stroke:1.5px var(--amber);text-stroke:1.5px var(--amber)}
+.sec-lede{font-size:1rem;color:var(--ink);max-width:58ch;margin-top:20px;line-height:1.85}
+.sec-lede strong{color:var(--amber);font-weight:600}
+.panel{
+  position:relative;background:var(--panel);border:1px solid var(--line);
+}
+.panel::before,.panel::after{
+  content:'';position:absolute;width:16px;height:16px;border:2px solid var(--amber);z-index:3;
+}
+.panel::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.panel::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+
+/* ── Buttons ── */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;font-family:var(--m);
+  font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
+  padding:16px 28px;cursor:pointer;transition:all var(--t);border:none;
+}
+.btn-solid{background:var(--amber);color:var(--bg)}
+.btn-solid:hover{background:var(--paper);transform:translate(-3px,-3px);box-shadow:7px 7px 0 var(--blue-lt)}
+.btn-line{background:transparent;color:var(--paper);border:1px solid var(--line-2)}
+.btn-line:hover{border-color:var(--amber);color:var(--amber);transform:translate(-3px,-3px);box-shadow:7px 7px 0 rgba(251,174,66,.25)}
+
+/* ── Hero ── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding:96px clamp(16px,4vw,52px) 0;position:relative;
+}
+.sys-strip{
+  display:flex;flex-wrap:wrap;gap:14px;align-items:center;
+  font-family:var(--m);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:10px 0;margin-bottom:clamp(26px,4vw,48px);
+}
+.sys-strip b{color:var(--amber);font-weight:600}
+.sys-strip .ok{display:inline-flex;align-items:center;gap:8px;color:var(--paper)}
+.sys-strip .ok i{width:7px;height:7px;background:var(--amber);animation:blink 1.4s steps(1) infinite}
+.sys-strip .push{margin-left:auto}
+.hero-grid{display:grid;grid-template-columns:1.38fr .82fr;gap:clamp(28px,4vw,56px);align-items:start}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:10px;font-family:var(--m);font-size:.62rem;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--bg);background:var(--amber);
+  padding:7px 15px;margin-bottom:26px;
+}
+.hero-name{
+  font-family:var(--d);font-weight:800;text-transform:uppercase;color:var(--paper);
+  font-size:clamp(2rem,7vw,6.2rem);line-height:.9;letter-spacing:-.045em;
+}
+.hero-name .out{display:block;color:transparent;-webkit-text-stroke:2px var(--amber);text-stroke:2px var(--amber)}
+.hero-name .thin{display:block;font-size:.62em;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1.5px rgba(244,243,239,.6);text-stroke:1.5px rgba(244,243,239,.6)}
+.hero-rule{width:120px;height:6px;background:var(--amber);margin:26px 0 0;clip-path:polygon(0 0,100% 0,86% 100%,0 100%)}
+.hero-roles{
+  font-family:var(--m);font-size:clamp(.82rem,1.6vw,1.05rem);color:var(--amber);
+  margin:20px 0 4px;min-height:1.6em;letter-spacing:-.01em;
+}
+.hero-roles .caret{display:inline-block;width:9px;height:1.05em;background:var(--paper);vertical-align:-2px;animation:blink 1s steps(1) infinite;margin-left:4px}
+.hero-desc{font-size:1.03rem;color:var(--ink);max-width:54ch;line-height:1.88;margin:16px 0 32px}
+.hero-desc strong{color:var(--paper);font-weight:600}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+.hero-facts{display:flex;flex-wrap:wrap;border-top:1px solid var(--line)}
+.hero-facts div{
+  flex:1;min-width:150px;padding:15px 16px 0 0;
+  font-family:var(--m);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+}
+.hero-facts div b{display:block;font-family:var(--d);font-size:1.1rem;font-weight:700;letter-spacing:-.02em;text-transform:none;color:var(--paper);margin-top:6px}
+
+/* ── Operator card ── */
+.op-card{padding:26px 24px 24px;transform:rotate(-.8deg);transition:all var(--t);box-shadow:var(--shadow)}
+.op-card:hover{transform:rotate(0) translateY(-4px)}
+.op-strip{
+  position:absolute;top:-1px;left:-1px;right:-1px;height:30px;background:var(--blue);
+  display:flex;align-items:center;justify-content:space-between;padding:0 14px;
+  font-family:var(--m);font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--paper);
+}
+.op-strip b{color:var(--amber)}
+.op-head{display:flex;gap:16px;align-items:center;padding:22px 0 18px;border-bottom:1px solid var(--line)}
+.op-photo{width:88px;height:88px;flex-shrink:0;position:relative;overflow:hidden;background:var(--blue);border:1px solid var(--line-2)}
+.op-photo img{width:100%;height:100%;object-fit:cover;object-position:center 18%}
+.op-photo::after{content:'';position:absolute;right:0;bottom:0;width:16px;height:16px;background:var(--amber)}
+.op-name{font-family:var(--d);font-size:1.3rem;font-weight:800;color:var(--paper);letter-spacing:-.02em;line-height:1.15}
+.op-role{font-family:var(--m);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-top:6px}
+.op-row{display:flex;gap:13px;padding:13px 0;border-bottom:1px dashed var(--line);align-items:flex-start}
+.op-row:last-of-type{border-bottom:none}
+.op-row .k{font-family:var(--m);font-size:.54rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px}
+.op-row .v{font-size:.87rem;color:var(--paper);font-weight:500;word-break:break-word;line-height:1.5}
+.op-row .ic{width:28px;height:28px;flex-shrink:0;display:grid;place-items:center;background:rgba(251,174,66,.14);color:var(--amber);font-family:var(--m);font-size:.72rem}
+.op-sig{margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+.op-sig .cap{display:flex;justify-content:space-between;font-family:var(--m);font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.op-sig .cap b{color:var(--amber)}
+.op-bars{display:flex;align-items:flex-end;gap:6px;height:70px;border-bottom:1px solid var(--line-2)}
+.op-bars i{flex:1;height:0;background:linear-gradient(180deg,var(--amber),rgba(251,174,66,.35));animation:rise .9s cubic-bezier(.16,1,.3,1) forwards}
+.op-bars i:nth-child(1){--h:32%;animation-delay:.85s}
+.op-bars i:nth-child(2){--h:50%;animation-delay:.95s}
+.op-bars i:nth-child(3){--h:40%;animation-delay:1.05s}
+.op-bars i:nth-child(4){--h:66%;animation-delay:1.15s}
+.op-bars i:nth-child(5){--h:56%;animation-delay:1.25s}
+.op-bars i:nth-child(6){--h:82%;animation-delay:1.35s}
+.op-bars i:nth-child(7){--h:100%;animation-delay:1.45s;background:linear-gradient(180deg,var(--paper),rgba(244,243,239,.4))}
+@keyframes rise{to{height:var(--h)}}
+.op-x{display:flex;gap:6px;margin-top:7px}
+.op-x span{flex:1;text-align:center;font-family:var(--m);font-size:.48rem;color:var(--muted)}
+.op-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.op-chips span{font-family:var(--m);font-size:.58rem;padding:6px 10px;border:1px solid var(--line);color:var(--ink);background:rgba(244,243,239,.04)}
+.op-chips span.on{background:var(--amber);color:var(--bg);border-color:var(--amber);font-weight:600}
+
+/* ── Telemetry strip ── */
+.telemetry{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(1,73,118,.28),rgba(1,21,36,.2));
+  padding:clamp(40px,5vw,64px) clamp(16px,4vw,52px);
+}
+.tel-grid{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.tel{padding:6px clamp(12px,2vw,28px);border-left:1px solid var(--line);position:relative}
+.tel:first-child{border-left:none;padding-left:0}
+.tel::before{content:'';position:absolute;top:-6px;left:clamp(12px,2vw,28px);width:26px;height:3px;background:var(--amber)}
+.tel:first-child::before{left:0}
+.tel-num{font-family:var(--d);font-weight:800;font-size:clamp(2.6rem,6vw,4.4rem);line-height:1;color:var(--paper);letter-spacing:-.05em}
+.tel-num em{font-style:normal;color:var(--amber);font-size:.5em;vertical-align:super}
+.tel-lab{font-family:var(--m);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+
+/* ── Ticker ── */
+.ticker{
+  background:var(--blue);overflow:hidden;position:relative;
+  border-top:1px solid var(--amber);border-bottom:1px solid var(--amber);padding:14px 0;
+}
+.ticker-track{display:flex;width:max-content;animation:slide 32s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker span{
+  font-family:var(--m);font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:var(--paper);
+  padding:0 24px;white-space:nowrap;display:inline-flex;align-items:center;gap:24px;
+}
+.ticker span::after{content:'';width:7px;height:7px;background:var(--amber);transform:rotate(45deg)}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── About ── */
+.about{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.about-grid{display:grid;grid-template-columns:1.4fr .8fr;gap:clamp(30px,5vw,66px);align-items:start}
+.about-copy p{font-size:1.02rem;line-height:1.95;margin-bottom:22px;color:var(--ink)}
+.about-copy p strong{color:var(--paper);font-weight:600}
+.about-copy .lead{font-size:1.12rem;color:var(--paper);line-height:1.82;border-left:4px solid var(--amber);padding-left:22px}
+.quote{
+  margin-top:32px;padding:26px 28px;background:var(--panel);border:1px solid var(--line);
+  font-family:var(--d);font-size:1.08rem;font-weight:500;line-height:1.7;color:var(--paper);
+  position:relative;
+}
+.quote span{display:block;font-family:var(--m);font-size:.56rem;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+.readout{padding:24px 22px 14px;background:var(--panel)}
+.readout h4{font-family:var(--m);font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--amber);padding-bottom:14px;border-bottom:1px solid var(--line)}
+.ro{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line);align-items:baseline}
+.ro:last-child{border-bottom:none}
+.ro dt{font-family:var(--m);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);flex-shrink:0}
+.ro dd{font-size:.86rem;color:var(--paper);font-weight:600;text-align:right}
+
+/* ── Skills ── */
+.ledger{border-top:2px solid var(--amber)}
+.sk-row{
+  display:grid;grid-template-columns:70px 1.1fr 1.35fr 168px;gap:clamp(14px,2vw,30px);
+  padding:30px 0;border-bottom:1px solid var(--line);align-items:start;position:relative;
+  transition:background var(--t);
+}
+.sk-row::before{
+  content:'';position:absolute;left:-16px;top:0;bottom:0;width:3px;background:var(--amber);
+  transform:scaleY(0);transform-origin:top;transition:transform .35s cubic-bezier(.16,1,.3,1);
+}
+.sk-row:hover{background:rgba(11,106,159,.14)}
+.sk-row:hover::before{transform:scaleY(1)}
+.sk-no{font-family:var(--m);font-size:.7rem;letter-spacing:.14em;color:var(--amber);font-weight:600;padding-top:10px}
+.sk-name{font-family:var(--d);font-size:clamp(1.2rem,2.4vw,1.65rem);font-weight:800;color:var(--paper);letter-spacing:-.02em;line-height:1.15;text-transform:uppercase}
+.sk-note{font-size:.86rem;color:var(--muted);margin-top:8px;line-height:1.7;max-width:34ch}
+.sk-tags{display:flex;flex-wrap:wrap;gap:7px;padding-top:5px}
+.tag{
+  font-family:var(--m);font-size:.63rem;padding:7px 11px;border:1px solid var(--line);
+  color:var(--ink);background:rgba(244,243,239,.04);transition:all var(--t);
+}
+.tag:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-2px)}
+.tag.solid{background:var(--blue);border-color:var(--blue);color:var(--paper)}
+.meter{padding-top:8px}
+.meter-track{
+  height:14px;background:rgba(244,243,239,.10);position:relative;overflow:hidden;
+  -webkit-mask:repeating-linear-gradient(90deg,#000 0 12px,transparent 12px 16px);
+  mask:repeating-linear-gradient(90deg,#000 0 12px,transparent 12px 16px);
+}
+.meter-fill{
+  height:100%;width:0;background:linear-gradient(90deg,var(--blue-lt),var(--amber));
+  transition:width 1.5s cubic-bezier(.16,1,.3,1);
+  -webkit-mask:repeating-linear-gradient(90deg,#000 0 12px,transparent 12px 16px);
+  mask:repeating-linear-gradient(90deg,#000 0 12px,transparent 12px 16px);
+}
+.meter-cap{font-family:var(--m);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:9px}
+.skills-foot{
+  display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+  margin-top:34px;padding:20px 24px;background:var(--blue);border-left:4px solid var(--amber);
+  font-family:var(--m);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--paper);
+}
+.skills-foot b{color:var(--amber)}
+
+/* ── Experience log ── */
+.exp{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.log{border-top:2px solid var(--amber)}
+.log-item{
+  display:grid;grid-template-columns:200px 1fr;gap:clamp(18px,3vw,44px);
+  padding:34px 0;border-bottom:1px solid var(--line);transition:background var(--t);
+}
+.log-item:hover{background:rgba(11,106,159,.12)}
+.log-side{position:relative;padding-left:24px}
+.log-side::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:1px;background:var(--line-2)}
+.log-side::after{content:'';position:absolute;left:-5px;top:4px;width:11px;height:11px;background:var(--amber)}
+.log-date{font-family:var(--m);font-size:.66rem;letter-spacing:.12em;color:var(--amber);font-weight:600;text-transform:uppercase}
+.log-org{font-size:.8rem;color:var(--muted);margin-top:8px;line-height:1.6}
+.log-role{
+  font-family:var(--d);font-size:clamp(1.15rem,2.4vw,1.55rem);font-weight:800;color:var(--paper);
+  letter-spacing:-.02em;line-height:1.2;display:flex;flex-wrap:wrap;gap:12px;align-items:center;text-transform:uppercase;
+}
+.badge{
+  font-family:var(--m);font-size:.53rem;letter-spacing:.22em;text-transform:uppercase;
+  background:var(--amber);color:var(--bg);padding:5px 10px;font-weight:600;
+}
+.log-list{margin-top:18px;display:flex;flex-direction:column;gap:11px}
+.log-list li{position:relative;padding-left:26px;font-size:.92rem;line-height:1.75;color:var(--ink)}
+.log-list li::before{content:'▸';position:absolute;left:0;top:0;color:var(--amber);font-size:.82rem}
+.log-list li strong{color:var(--paper);font-weight:600}
+
+/* ── Projects ── */
+.pstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));border-top:2px solid var(--amber);border-bottom:1px solid var(--line);margin-bottom:42px}
+.pstats div{padding:22px 18px;border-left:1px solid var(--line)}
+.pstats div:first-child{border-left:none;padding-left:0}
+.pstats .tel-num{font-size:clamp(2rem,4vw,3rem);color:var(--paper)}
+.pstats .tel-lab{margin-top:8px}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.pcard{
+  background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column;
+  transition:all var(--t);position:relative;overflow:hidden;
+}
+.pcard:hover{transform:translate(-5px,-5px);border-color:var(--amber);box-shadow:9px 9px 0 rgba(251,174,66,.55)}
+.pcard::after{
+  content:attr(data-idx);position:absolute;top:12px;right:14px;z-index:4;
+  font-family:var(--m);font-size:.58rem;letter-spacing:.18em;color:var(--amber);
+  background:rgba(1,21,36,.8);padding:4px 8px;border:1px solid var(--line);
+}
+.pshot{position:relative;height:172px;overflow:hidden;background:var(--bg-2);z-index:1}
+.pshot img{
+  width:100%;height:100%;object-fit:cover;object-position:center top;display:block;
+  filter:grayscale(.5) contrast(1.08) brightness(.86);
+  transition:filter .55s ease,transform .7s cubic-bezier(.16,1,.3,1);
+}
+.pcard:hover .pshot img{filter:none;transform:scale(1.05)}
+.pshot::after{
+  content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(1,26,44,.12),rgba(1,26,44,.62));
+}
+.pshot b{
+  position:absolute;left:14px;bottom:14px;z-index:2;background:var(--amber);color:var(--bg);
+  font-family:var(--m);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;padding:6px 11px;font-weight:600;
+}
+.pglyph{
+  height:172px;display:grid;place-items:center;position:relative;overflow:hidden;
+  background:
+    radial-gradient(260px 150px at 78% 12%,rgba(251,174,66,.24),transparent 62%),
+    radial-gradient(240px 160px at 12% 94%,rgba(11,106,159,.5),transparent 64%),
+    var(--bg-2);
+}
+.pglyph::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(244,243,239,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(244,243,239,.07) 1px,transparent 1px);
+  background-size:26px 26px;
+}
+.pglyph div{font-family:var(--d);font-size:3rem;font-weight:800;color:var(--paper);position:relative;z-index:2;text-shadow:0 6px 24px rgba(0,0,0,.5);text-align:center}
+.pglyph small{display:block;font-family:var(--m);font-size:.54rem;letter-spacing:.3em;font-weight:500;color:var(--amber);margin-top:8px;text-shadow:none}
+.pbody{padding:24px 24px 26px;display:flex;flex-direction:column;flex:1;border-top:3px solid var(--amber)}
+.pkind{font-family:var(--m);font-size:.55rem;letter-spacing:.24em;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.ptitle{font-family:var(--d);font-size:1.2rem;font-weight:800;color:var(--paper);letter-spacing:-.02em;line-height:1.2;margin-bottom:11px;text-transform:uppercase}
+.pdesc{font-size:.87rem;color:var(--ink);line-height:1.8;flex:1;margin-bottom:18px}
+.ptags{display:flex;flex-wrap:wrap;gap:6px}
+.ptags .tag{font-size:.57rem;padding:6px 10px}
+.plink{
+  display:inline-flex;align-items:center;gap:9px;width:100%;margin-top:16px;padding-top:14px;
+  border-top:1px solid var(--line);font-family:var(--m);font-size:.58rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--amber);font-weight:600;transition:gap var(--t);
+}
+.pcard:hover .plink{gap:16px}
+
+/* featured */
+.pfeature{grid-column:1/-1;display:grid;grid-template-columns:1.05fr .95fr;border:1px solid var(--line-2);background:var(--panel);position:relative;overflow:hidden}
+.pfeature:hover{transform:translate(-5px,-5px);box-shadow:9px 9px 0 rgba(251,174,66,.55);border-color:var(--amber)}
+.pf-media{
+  min-height:330px;position:relative;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:26px;overflow:hidden;border-right:1px solid var(--line-2);
+  background:
+    linear-gradient(180deg,rgba(1,21,36,.34),rgba(1,21,36,.9)),
+    url("portfolio-assets/customer-analytics.jpg") center/cover no-repeat,
+    linear-gradient(135deg,var(--blue),var(--bg-2));
+}
+.pf-media::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(251,174,66,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(251,174,66,.10) 1px,transparent 1px);
+  background-size:46px 46px;
+}
+.pf-stamp{
+  position:absolute;top:22px;left:22px;z-index:2;background:var(--amber);color:var(--bg);
+  font-family:var(--m);font-size:.55rem;letter-spacing:.26em;padding:7px 14px;font-weight:600;transform:rotate(-3deg);
+}
+.pf-cap{position:relative;z-index:2}
+.pf-cap b{display:block;font-family:var(--d);font-size:clamp(1.4rem,2.7vw,2.1rem);font-weight:800;color:var(--paper);letter-spacing:-.03em;line-height:1.1;text-transform:uppercase}
+.pf-cap span{display:block;font-family:var(--m);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-top:10px}
+.pf-body{padding:clamp(26px,3vw,44px);display:flex;flex-direction:column;justify-content:center}
+.pf-body .ptitle{font-size:clamp(1.45rem,3vw,2.1rem)}
+.pf-body .pdesc{font-size:.95rem;margin-bottom:22px}
+.pf-metrics{display:flex;flex-wrap:wrap;border-top:1px solid var(--line);margin-bottom:24px}
+.pf-metrics div{flex:1;min-width:118px;padding:16px 14px 0 0}
+.pf-metrics b{display:block;font-family:var(--d);font-size:1.55rem;font-weight:800;color:var(--paper);letter-spacing:-.04em}
+.pf-metrics span{font-family:var(--m);font-size:.53rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.pcta{
+  background:var(--blue);border:1px solid var(--blue);color:var(--paper);
+  display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:16px;
+  padding:32px 28px;transition:all var(--t);position:relative;overflow:hidden;
+}
+.pcta::before{content:'';position:absolute;right:-46px;bottom:-46px;width:160px;height:160px;border:1px solid rgba(251,174,66,.5);transform:rotate(45deg)}
+.pcta:hover{transform:translate(-5px,-5px);box-shadow:9px 9px 0 rgba(251,174,66,.55);background:var(--bg-2);border-color:var(--amber)}
+.pcta p{font-family:var(--m);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,243,239,.7);line-height:2}
+.pcta h3{font-family:var(--d);font-size:1.5rem;font-weight:800;letter-spacing:-.02em;line-height:1.2;text-transform:uppercase}
+.pcta .go{font-family:var(--m);font-size:.64rem;letter-spacing:.2em;color:var(--amber);text-transform:uppercase}
+
+/* ── Education ── */
+.edu{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.edu-card{max-width:860px;padding:clamp(28px,4vw,44px)}
+.edu-kicker{font-family:var(--m);font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+.edu-title{font-family:var(--d);font-size:clamp(1.3rem,3vw,2rem);font-weight:800;color:var(--paper);letter-spacing:-.02em;line-height:1.2;text-transform:uppercase}
+.edu-org{font-size:.95rem;color:var(--ink);margin-top:12px;font-weight:600}
+.edu-date{font-family:var(--m);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.edu-desc{font-size:.92rem;color:var(--ink);line-height:1.85;margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+
+/* ── Competencies ── */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(212px,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.comp{
+  display:flex;align-items:center;gap:13px;padding:24px 22px;
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  font-size:.92rem;font-weight:500;color:var(--paper);transition:all var(--t);background:rgba(4,41,63,.6);
+}
+.comp:hover{background:var(--amber);color:var(--bg);transform:scale(1.02);z-index:2;box-shadow:0 16px 36px rgba(0,0,0,.5)}
+.comp i{width:10px;height:10px;background:var(--amber);flex-shrink:0;transition:all var(--t)}
+.comp:hover i{background:var(--bg);transform:rotate(45deg) scale(1.3)}
+
+/* ── Languages ── */
+.langs{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.lang{display:grid;grid-template-columns:52px 150px 1fr 110px;gap:clamp(14px,2vw,28px);align-items:center;padding:26px 0;border-bottom:1px solid var(--line);max-width:980px}
+.lang:first-of-type{border-top:2px solid var(--amber)}
+.lang-flag{font-size:1.6rem}
+.lang-name{font-family:var(--d);font-size:1.25rem;font-weight:800;color:var(--paper);letter-spacing:-.02em;text-transform:uppercase}
+.lang-bar{height:14px;background:rgba(244,243,239,.10);overflow:hidden;
+  -webkit-mask:repeating-linear-gradient(90deg,#000 0 16px,transparent 16px 21px);
+  mask:repeating-linear-gradient(90deg,#000 0 16px,transparent 16px 21px);}
+.lang-fill{height:100%;width:0;background:linear-gradient(90deg,var(--blue-lt),var(--amber));transition:width 1.5s cubic-bezier(.16,1,.3,1);
+  -webkit-mask:repeating-linear-gradient(90deg,#000 0 16px,transparent 16px 21px);
+  mask:repeating-linear-gradient(90deg,#000 0 16px,transparent 16px 21px);}
+.lang-level{font-family:var(--m);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);text-align:right;font-weight:600}
+
+/* ── Contact ── */
+.contact{background:var(--amber);color:var(--bg);position:relative;overflow:hidden}
+.contact::after{
+  content:'';position:absolute;right:-130px;top:50%;transform:translateY(-50%) rotate(45deg);
+  width:360px;height:360px;border:1px solid rgba(1,26,44,.35);pointer-events:none;
+}
+.contact-grid{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(30px,5vw,70px);align-items:center;position:relative;z-index:2}
+.contact .sec-code{color:var(--bg)}
+.contact .sec-code .ln{background:rgba(1,26,44,.3)}
+.contact .sec-code .dim{color:rgba(1,26,44,.6)}
+.contact h2{
+  font-family:var(--d);font-weight:800;letter-spacing:-.04em;line-height:.95;
+  font-size:clamp(2.2rem,6vw,4.6rem);text-transform:uppercase;
+}
+.contact h2 em{font-style:normal;color:transparent;-webkit-text-stroke:2px var(--bg);text-stroke:2px var(--bg)}
+.contact p{font-size:1.02rem;color:rgba(1,26,44,.82);margin-top:22px;max-width:50ch;line-height:1.85;font-weight:500}
+.contact-actions{display:flex;flex-direction:column;gap:14px}
+.contact-actions .btn{justify-content:center}
+.btn-dark{background:var(--bg);color:var(--paper)}
+.btn-dark:hover{background:var(--blue);transform:translate(-3px,-3px);box-shadow:7px 7px 0 rgba(1,26,44,.4)}
+.btn-ghost-dark{background:transparent;color:var(--bg);border:1px solid rgba(1,26,44,.5)}
+.btn-ghost-dark:hover{background:var(--bg);color:var(--amber);transform:translate(-3px,-3px);box-shadow:7px 7px 0 rgba(1,26,44,.4)}
+.contact-meta{font-family:var(--m);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(1,26,44,.6);text-align:center;margin-top:6px}
+
+/* ── Footer ── */
+.foot{background:var(--bg-2);border-top:1px solid var(--line);padding:44px clamp(16px,4vw,52px)}
+.foot-in{max-width:1260px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
+.foot-brand{font-family:var(--d);font-size:1.3rem;font-weight:800;color:var(--paper);letter-spacing:-.02em;text-transform:uppercase}
+.foot-tag{font-family:var(--m);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.foot-soc{display:flex;gap:10px}
+.f-soc{
+  width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line-2);
+  font-family:var(--m);font-size:.7rem;font-weight:600;color:var(--amber);transition:all var(--t);background:var(--panel);
+}
+.f-soc:hover{background:var(--amber);color:var(--bg);transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--blue-lt)}
+.foot-copy{width:100%;border-top:1px solid var(--line);padding-top:20px;margin-top:6px;
+  font-family:var(--m);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+/* ── Back to top ── */
+#up{
+  position:fixed;bottom:24px;right:24px;z-index:400;width:50px;height:50px;
+  background:var(--amber);color:var(--bg);border:none;cursor:pointer;font-size:1rem;
+  display:grid;place-items:center;opacity:0;visibility:hidden;transform:translateY(14px);
+  transition:all var(--t);font-family:var(--m);font-weight:600;
+}
+#up.show{opacity:1;visibility:visible;transform:translateY(0)}
+#up:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--blue-lt)}
+
+/* ── Motion ── */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+.reveal.on{opacity:1;transform:none}
+.d1{transition-delay:.09s}.d2{transition-delay:.18s}.d3{transition-delay:.27s}.d4{transition-delay:.36s}
+.rise{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+body.ready .rise{opacity:1;transform:none}
+body.ready .r1{transition-delay:.05s}
+body.ready .r2{transition-delay:.16s}
+body.ready .r3{transition-delay:.3s}
+body.ready .r4{transition-delay:.44s}
+body.ready .r5{transition-delay:.58s}
+body.ready .r6{transition-delay:.72s}
+
+/* ── Responsive ── */
+@media (max-width:1120px){
+  .hero-grid{grid-template-columns:1fr}
+  .op-card{transform:none;max-width:540px}
+  .about-grid{grid-template-columns:1fr}
+  .sk-row{grid-template-columns:56px 1fr;gap:16px}
+  .sk-row .sk-tags,.sk-row .meter{grid-column:2/-1}
+  .contact-grid{grid-template-columns:1fr}
+  .pfeature{grid-template-columns:1fr}
+  .pf-media{border-right:none;border-bottom:1px solid var(--line-2);min-height:260px}
+}
+@media (max-width:940px){
+  :root{--rail:0px}
+  .rail{display:none}
+  .page{margin-left:0}
+  .bar{left:0}
+  .bar-links,.bar-cta{display:none}
+  .burger{display:grid;place-items:center}
+  .bar.open .bar-links{
+    display:flex;flex-direction:column;align-items:stretch;position:absolute;top:62px;left:0;right:0;
+    background:var(--bg-2);backdrop-filter:blur(16px);padding:14px 20px 22px;gap:2px;
+    border-bottom:2px solid var(--amber);box-shadow:0 22px 44px rgba(0,0,0,.5);
+  }
+  .bar.open .bar-links a{padding:13px 8px;font-size:.7rem}
+  .tel-grid{grid-template-columns:repeat(2,1fr);gap:28px 0}
+  .tel{border-left:none;padding-left:0}
+  .tel::before{left:0}
+  .log-item{grid-template-columns:1fr;gap:14px}
+  .lang{grid-template-columns:44px 1fr;gap:12px}
+  .lang-bar{grid-column:1/-1}
+  .lang-level{grid-column:1/-1;text-align:left}
+  .pstats div{border-left:none;padding-left:0;border-top:1px solid var(--line)}
+  .pstats div:first-child{border-top:none}
+}
+@media (max-width:560px){
+  .hero{padding-top:84px}
+  .hero-name .out{-webkit-text-stroke:1.4px var(--amber)}
+  .btn{width:100%;justify-content:center}
+  .foot-copy{flex-direction:column;gap:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .reveal,.rise{opacity:1!important;transform:none!important}
+}
+@media print{
+  .rail,.bar,.boot,.fx-grid,.fx-glow,.fx-scan,.fx-grain,#up,.ticker,.hazard{display:none!important}
+  body{background:#fff;color:#000}
+  .page{margin-left:0}
+  .sec-title,.ptitle,.sk-name,.log-role,.edu-title,.tel-num,.op-name,.foot-brand,.hero-name{color:#014976!important;-webkit-text-fill-color:#014976!important}
+  .hero-name .out,.contact h2 em{-webkit-text-stroke:1.5px #014976!important}
+  section{padding:24px 0;break-inside:avoid}
+  .hero{min-height:auto;padding-top:0}
+}
+
+/* ---- Repository log ---- */
+.catalog{margin-top:54px;padding-top:34px;border-top:1px solid var(--amber)}
+.cat-title{font-family:var(--d);font-weight:800;text-transform:uppercase;color:var(--paper);
+  font-size:clamp(1.7rem,4vw,3rem);letter-spacing:-.035em;line-height:1}
+.cat-title em{font-style:normal;color:transparent;-webkit-text-stroke:1.5px var(--amber);text-stroke:1.5px var(--amber)}
+.cat-group{margin-bottom:28px}
+.cat-ghead{display:flex;align-items:center;gap:14px;font-family:var(--m);font-size:.58rem;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--amber);padding-bottom:10px;
+  border-bottom:1px solid var(--line-2)}
+.cat-ghead i{flex:1;height:1px;background:var(--line)}
+.cat-ghead b{color:var(--muted);font-weight:500;letter-spacing:.18em}
+.cat-row{display:grid;grid-template-columns:46px minmax(160px,1.05fr) 2fr minmax(135px,.95fr);
+  gap:16px;align-items:baseline;padding:13px 10px;border-bottom:1px dashed var(--line);
+  transition:background .25s ease,padding-left .25s ease}
+.cat-row:hover{background:rgba(251,174,66,.07);padding-left:16px}
+.cat-idx{font-family:var(--m);font-size:.55rem;letter-spacing:.14em;color:var(--muted)}
+.cat-name{font-family:var(--d);font-weight:700;font-size:.95rem;color:var(--paper);
+  letter-spacing:-.01em;word-break:break-word}
+.cat-name em{display:block;font-family:var(--m);font-size:.46rem;letter-spacing:.26em;
+  color:var(--bg);background:var(--amber);text-transform:uppercase;font-style:normal;
+  margin-top:6px;padding:2px 6px;width:max-content}
+.cat-desc{font-size:.85rem;color:var(--ink);line-height:1.7}
+.cat-tags{font-family:var(--m);font-size:.52rem;letter-spacing:.14em;color:var(--muted);
+  text-align:right;line-height:1.9}
+@media(max-width:900px){
+  .cat-row{grid-template-columns:44px 1fr;gap:4px 12px;padding:14px 6px}
+  .cat-desc,.cat-tags{grid-column:2;text-align:left}
+  .cat-desc{margin-top:4px}
+}
+
+</style>
+</head>
+<body>
+
+<!-- Boot -->
+<div class="boot" id="boot">
+  <div class="boot-mark">K</div>
+  <div class="boot-cap">Initializing · Data Systems</div>
+  <div class="boot-bar"><i></i></div>
+</div>
+
+<div class="fx-grid"></div>
+<div class="fx-glow"></div>
+<div class="fx-scan"></div>
+<div class="fx-grain"></div>
+
+<!-- Left rail -->
+<aside class="rail">
+  <div class="rail-prog" id="rail-prog"></div>
+  <a href="#home" class="rail-logo">K</a>
+  <nav class="rail-nav">
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Stack</a>
+    <a href="#experience">Log</a>
+    <a href="#projects">Work</a>
+    <a href="#catalog">Catalog</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="rail-foot">KA · 2026</div>
+</aside>
+
+<!-- Top bar -->
+<header class="bar" id="bar">
+  <a href="#home" class="bar-brand"><span class="dot"></span> KAREEM&nbsp;AHMED</a>
+  <nav class="bar-links" id="bar-links">
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Stack</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Work</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a href="mailto:Kareem.shair2@gmail.com" class="bar-cta">Hire Me</a>
+  <button class="burger" id="burger" aria-label="Menu">☰</button>
+</header>
+
+<div class="page">
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="sys-strip rise r1">
+      <span class="ok"><i></i> System ready</span>
+      <span>Operator <b>KA-01</b></span>
+      <span>Sector <b>Menoüfia · EG</b></span>
+      <span class="push">Ed. <b>2026</b></span>
+    </div>
+
+    <div class="hero-grid">
+      <div>
+        <div class="hero-tag rise r2">Data Analyst · BI · Automation</div>
+
+        <h1 class="hero-name rise r3">
+          Kareem
+          <span class="out">Ahmed</span>
+          <span class="thin">Abdelwahab</span>
+        </h1>
+        <div class="hero-rule rise r3"></div>
+
+        <div class="hero-roles rise r4"><span id="typed"></span><span class="caret"></span></div>
+
+        <p class="hero-desc rise r4">
+          I turn raw operational data into <strong>decisions that ship</strong> — pipelines in
+          <strong>Python &amp; SQL</strong>, models in <strong>Power&nbsp;Pivot</strong>, dashboards in
+          <strong>Power&nbsp;BI, Tableau &amp; Looker&nbsp;Studio</strong>, and everything wired together with <strong>AI</strong>.
+        </p>
+
+        <div class="hero-ctas rise r5">
+          <a href="#projects" class="btn btn-solid">View the Work →</a>
+          <a href="#contact" class="btn btn-line">Contact Me</a>
+        </div>
+
+        <div class="hero-facts rise r6">
+          <div>Based in<b>Menoufia, Egypt</b></div>
+          <div>Discipline<b>Analytics &amp; BI</b></div>
+          <div>Status<b>Open to work</b></div>
+        </div>
+      </div>
+
+      <div class="panel op-card rise r5">
+        <div class="op-strip"><span>Operator ID</span><b>KA-01</b></div>
+
+        <div class="op-head">
+          <div class="op-photo">
+            <img src="WhatsApp Image 2026-10-06 at 7.38.26 PM.jpeg" alt="Kareem Ahmed — portrait">
+          </div>
+          <div>
+            <div class="op-name">Kareem Ahmed</div>
+            <div class="op-role">Data Analyst · BI · Automation</div>
+          </div>
+        </div>
+
+        <div class="op-row">
+          <div class="ic">@</div>
+          <div><span class="k">Email</span><span class="v">Kareem.shair2@gmail.com</span></div>
+        </div>
+        <div class="op-row">
+          <div class="ic">T</div>
+          <div><span class="k">Phone</span><span class="v">(+20) 01032894453</span></div>
+        </div>
+        <div class="op-row">
+          <div class="ic">#</div>
+          <div><span class="k">Location</span><span class="v">Menoufia, Egypt</span></div>
+        </div>
+
+        <div class="op-sig">
+          <div class="cap"><span>Deliverables / last 7 cycles</span><b>+128%</b></div>
+          <div class="op-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="op-x"><span>Q1</span><span>Q2</span><span>Q3</span><span>Q4</span><span>Q5</span><span>Q6</span><span>Q7</span></div>
+        </div>
+
+        <div class="op-chips">
+          <span class="on">Python</span><span class="on">SQL</span><span>Power BI</span>
+          <span>Tableau</span><span>Excel</span><span>AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hazard"></div>
+
+<!-- ══ TELEMETRY ══ -->
+<div class="telemetry">
+  <div class="tel-grid">
+    <div class="tel">
+      <div class="tel-num"><span data-count="30">0</span><em>+</em></div>
+      <div class="tel-lab">Projects Delivered</div>
+    </div>
+    <div class="tel">
+      <div class="tel-num"><span data-count="15">0</span><em>+</em></div>
+      <div class="tel-lab">Tools Mastered</div>
+    </div>
+    <div class="tel">
+      <div class="tel-num"><span data-count="30">0</span></div>
+      <div class="tel-lab">Public Repositories</div>
+    </div>
+    <div class="tel">
+      <div class="tel-num"><span data-count="3">0</span><em>+</em></div>
+      <div class="tel-lab">Years in the Field</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TICKER ══ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Python</span><span>Pandas</span><span>NumPy</span><span>Matplotlib</span><span>Seaborn</span><span>Scikit-learn</span><span>SQL</span><span>Power BI</span><span>DAX</span><span>Power Pivot</span><span>Power Query</span><span>Excel</span><span>Tableau</span><span>Looker Studio</span><span>AI</span>
+    <span>Python</span><span>Pandas</span><span>NumPy</span><span>Matplotlib</span><span>Seaborn</span><span>Scikit-learn</span><span>SQL</span><span>Power BI</span><span>DAX</span><span>Power Pivot</span><span>Power Query</span><span>Excel</span><span>Tableau</span><span>Looker Studio</span><span>AI</span>
+  </div>
+</div>
+
+<!-- ══ ABOUT ══ -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-code"><span>01 / About</span><span class="ln"></span><span class="dim">Profile · Summary</span></div>
+      <h2 class="sec-title">Data into <em>decisions</em></h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <p class="lead">
+          Data Analyst with practical experience in data management, business process automation and
+          AI-powered solutions — building the full chain from raw extract to governed model to a
+          dashboard a non-technical manager can actually read.
+        </p>
+        <p>
+          Day to day: <strong>Python (Pandas, NumPy, Matplotlib, Seaborn)</strong> for analysis,
+          <strong>SQL</strong> for modelling, <strong>Power Query &amp; Power Pivot</strong> for repeatable
+          ETL and DAX models, and <strong>Power BI, Tableau &amp; Looker Studio</strong> for the visual
+          layer — with <strong>Excel</strong> still doing the heavy lifting where it is the fastest tool in the room.
+        </p>
+        <p>
+          Alongside the technical work, I lead <strong>data operations for volunteer programs across
+          Egyptian universities</strong> — centralized databases, automated reporting and dashboards used
+          by leadership for real-time decisions.
+        </p>
+        <div class="quote">
+          <span>Field note</span>
+          Operational problems rarely need more data. They need the right model, the right chart,
+          and one automated flow nobody has to babysit.
+        </div>
+      </div>
+
+      <div class="panel readout reveal d1">
+        <h4>Quick Readout</h4>
+        <dl>
+          <div class="ro"><dt>Role</dt><dd>Data Analyst / BI</dd></div>
+          <div class="ro"><dt>Focus</dt><dd>Analytics · BI · Automation</dd></div>
+          <div class="ro"><dt>Core Tools</dt><dd>Python · SQL · Power BI</dd></div>
+          <div class="ro"><dt>Education</dt><dd>B.Sc. EE &amp; CS — Menoufia</dd></div>
+          <div class="ro"><dt>Languages</dt><dd>Arabic · English (B2)</dd></div>
+          <div class="ro"><dt>Availability</dt><dd>Open to opportunities</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STACK ══ -->
+<section class="skills" id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-code"><span>02 / Technical Stack</span><span class="ln"></span><span class="dim">Tools · Libraries · Platforms</span></div>
+      <h2 class="sec-title">The <em>arsenal</em></h2>
+      <p class="sec-lede">Every tool below is used in live projects — not a list copied from tutorials.</p>
+    </div>
+
+    <div class="ledger">
+      <div class="sk-row reveal">
+        <div class="sk-no">/ 01</div>
+        <div>
+          <div class="sk-name">Python &amp; Data Analysis</div>
+          <div class="sk-note">Cleaning, wrangling, statistics and visualisation — notebook to pipeline.</div>
+        </div>
+        <div class="sk-tags">
+          <span class="tag solid">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
+          <span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">Plotly</span>
+          <span class="tag">SciPy</span><span class="tag">Scikit-learn</span><span class="tag">Jupyter</span>
+        </div>
+        <div class="meter">
+          <div class="meter-track"><div class="meter-fill" data-width="92"></div></div>
+          <div class="meter-cap">Analysis core</div>
+        </div>
+      </div>
+
+      <div class="sk-row reveal d1">
+        <div class="sk-no">/ 02</div>
+        <div>
+          <div class="sk-name">SQL &amp; Databases</div>
+          <div class="sk-note">Query design, modelling and optimisation across relational stores.</div>
+        </div>
+        <div class="sk-tags">
+          <span class="tag solid">SQL</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
+          <span class="tag">SQLite</span><span class="tag">Joins &amp; CTEs</span><span class="tag">Window Functions</span>
+          <span class="tag">Stored Procedures</span><span class="tag">Query Tuning</span>
+        </div>
+        <div class="meter">
+          <div class="meter-track"><div class="meter-fill" data-width="90"></div></div>
+          <div class="meter-cap">Modelling layer</div>
+        </div>
+      </div>
+
+      <div class="sk-row reveal d2">
+        <div class="sk-no">/ 03</div>
+        <div>
+          <div class="sk-name">Power BI &amp; DAX</div>
+          <div class="sk-note">Semantic models, DAX measures and executive-grade report design.</div>
+        </div>
+        <div class="sk-tags">
+          <span class="tag solid">Power BI</span><span class="tag">DAX</span><span class="tag">Data Modelling</span>
+          <span class="tag">Power Query (M)</span><span class="tag">Row-Level Security</span><span class="tag">KPI Design</span>
+        </div>
+        <div class="meter">
+          <div class="meter-track"><div class="meter-fill" data-width="88"></div></div>
+          <div class="meter-cap">Reporting layer</div>
+        </div>
+      </div>
+
+      <div class="sk-row reveal">
+        <div class="sk-no">/ 04</div>
+        <div>
+          <div class="sk-name">Excel · Power Pivot · Power Query</div>
+          <div class="sk-note">Advanced spreadsheet engineering — the fastest route from file to answer.</div>
+        </div>
+        <div class="sk-tags">
+          <span class="tag solid">Excel (Advanced)</span><span class="tag">Power Pivot</span><span class="tag">Power Query</span>
+          <span class="tag">PivotTables</span><span class="tag">DAX in Excel</span><span class="tag">VBA / Macros</span>
+          <span class="tag">Google Sheets</span>
+        </div>
+        <div class="meter">
+          <div class="meter-track"><div class="meter-fill" data-width="94"></div></div>
+          <div class="meter-cap">Spreadsheet layer</div>
+        </div>
+      </div>
+
+      <div class="sk-row reveal d1">
+        <div class="sk-no">/ 05</div>
+        <div>
+          <div class="sk-name">Tableau &amp; Looker Studio</div>
+          <div class="sk-note">Exploratory visuals and always-on reporting for stakeholders.</div>
+        </div>
+        <div class="sk-tags">
+          <span class="tag solid">Tableau</span><span class="tag solid">Looker Studio</span>
+          <span class="tag">Calculated Fields</span><span class="tag">Blends</span>
+          <span class="tag">Dashboards</span><span class="tag">Storytelling</span>
+        </div>
+        <div class="meter">
+          <div class="meter-track"><div class="meter-fill" data-width="86"></div></div>
+          <div class="meter-cap">Visual layer</div>
+        </div>
+      </div>
+
+      <div class="sk-row reveal d2">
+        <div class="sk-no">/ 06</div>
+        <div>
+          <div class="sk-name">AI &amp; Automation</div>
+          <div class="sk-note">LLM-assisted analysis, prompt systems and hands-free workflows.</div>
+        </div>
+        <div class="sk-tags">
+          <span class="tag solid">AI / GenAI</span><span class="tag">Prompt Engineering</span><span class="tag">AI Workflows</span>
+          <span class="tag">API Integration</span><span class="tag">Google Apps Script</span>
+          <span class="tag">Process Automation</span><span class="tag">KoboToolbox</span>
+        </div>
+        <div class="meter">
+          <div class="meter-track"><div class="meter-fill" data-width="89"></div></div>
+          <div class="meter-cap">Intelligence layer</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skills-foot reveal">
+      <span>Also fluent in: Git &amp; GitHub · KoboToolbox · Google Workspace · C fundamentals</span>
+      <span>Stack updated — <b>2026</b></span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EXPERIENCE LOG ══ -->
+<section class="exp" id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-code"><span>03 / Career Log</span><span class="ln"></span><span class="dim">2024 — Present</span></div>
+      <h2 class="sec-title">Experience <em>log</em></h2>
+    </div>
+
+    <div class="log">
+      <div class="log-item reveal">
+        <div class="log-side">
+          <div class="log-date">Oct 2025 — Present</div>
+          <div class="log-org">Life Makers Student Families — Egyptian Universities</div>
+        </div>
+        <div>
+          <div class="log-role">Data Management Lead <span class="badge">Volunteer</span></div>
+          <ul class="log-list">
+            <li>Lead the <strong>data management process</strong> for volunteer activities across multiple Egyptian universities.</li>
+            <li>Build and maintain centralized data systems for reporting and operational tracking.</li>
+            <li>Design automated workflows using Google Workspace to cut manual work and human error.</li>
+            <li>Create dashboards and reports leadership uses to monitor performance in real time.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="log-item reveal d1">
+        <div class="log-side">
+          <div class="log-date">Oct 2025 — Present</div>
+          <div class="log-org">Life Makers Foundation — Egypt</div>
+        </div>
+        <div>
+          <div class="log-role">Assistant to the IT Board <span class="badge">Volunteer</span></div>
+          <ul class="log-list">
+            <li>Support the IT Board in planning and implementing technical initiatives.</li>
+            <li>Contribute to <strong>digital transformation</strong> projects and workflow improvement.</li>
+            <li>Assist in developing internal systems and automation for organizational operations.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="log-item reveal d2">
+        <div class="log-side">
+          <div class="log-date">Oct 2024 — Present</div>
+          <div class="log-org">Life Makers Association — Menoufia</div>
+        </div>
+        <div>
+          <div class="log-role">IT &amp; Operations Coordinator <span class="badge">Volunteer</span></div>
+          <ul class="log-list">
+            <li>Managed IT infrastructure and digital systems across departments.</li>
+            <li>Coordinated operational activities and supported fundraising campaigns.</li>
+            <li>Developed digital solutions for case management, reporting and volunteer operations.</li>
+            <li>Provided technical support for governorate-level and central projects.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="log-item reveal d3">
+        <div class="log-side">
+          <div class="log-date">Oct 2024 — Dec 2024</div>
+          <div class="log-org">Shebin El-Kom Youth Center</div>
+        </div>
+        <div>
+          <div class="log-role">IT Administrator</div>
+          <ul class="log-list">
+            <li>Provided technical support and maintained IT systems.</li>
+            <li>Resolved hardware and software issues while supporting daily operations.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WORK ══ -->
+<section class="projects" id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-code"><span>04 / Selected Work</span><span class="ln"></span><span class="dim">Dashboards · Systems · AI</span></div>
+      <h2 class="sec-title">On the <em>record</em></h2>
+      <p class="sec-lede">
+        The complete public portfolio — <strong>38 repositories</strong> across dashboards, registration
+        systems, field tools and learning platforms, each card linked to its source.
+      </p>
+    </div>
+
+    <div class="pstats reveal">
+      <div><div class="tel-num"><span data-count="30">0</span><em>+</em></div><div class="tel-lab">Projects Delivered</div></div>
+      <div><div class="tel-num"><span data-count="5">0</span></div><div class="tel-lab">Product Categories</div></div>
+      <div><div class="tel-num"><span data-count="42">0</span></div><div class="tel-lab">Public Repositories</div></div>
+      <div><div class="tel-num"><span data-count="6">0</span><em>+</em></div><div class="tel-lab">Organizations Served</div></div>
+    </div>
+
+    <div class="pgrid">
+
+      <article class="pfeature reveal" data-idx="01">
+        <div class="pf-media" role="img" aria-label="Customer analytics dashboard screenshot">
+          <div class="pf-stamp">Featured</div>
+          <div class="pf-cap">
+            <b>Customer Analytics Dashboard</b>
+            <span>Power BI · Looker Studio · KPI Layer</span>
+          </div>
+        </div>
+        <div class="pf-body">
+          <div class="pkind">Dashboard · Business Intelligence</div>
+          <div class="ptitle">Customer Analytics Overview</div>
+          <div class="pdesc">
+            An executive customer-analytics report blending acquisition, retention and revenue signals
+            into a single view — governed data model, DAX measures, dynamic date intelligence and
+            drill-through pages from headline KPI to the underlying segment in one click.
+          </div>
+          <div class="pf-metrics">
+            <div><b>12+</b><span>KPIs Tracked</span></div>
+            <div><b>4</b><span>Report Pages</span></div>
+            <div><b>1-click</b><span>Drill-Through</span></div>
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Power BI</span><span class="tag">DAX</span>
+            <span class="tag">Looker Studio</span><span class="tag">Data Modelling</span><span class="tag">KPI Design</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="pcard reveal d1" data-idx="02">
+        <div class="pshot">
+          <img src="portfolio-assets/sehatak.jpg" alt="Sehatak health forms system interface" loading="lazy">
+          <b>Health · Forms</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Systems · Healthcare</div>
+          <div class="ptitle">Sehatak — Health Forms System</div>
+          <div class="pdesc">
+            A health forms management system for medical teams: structured intake, validation and
+            centralized records so field data becomes usable patient forms without paper.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">HTML</span><span class="tag">JavaScript</span>
+            <span class="tag">Forms</span><span class="tag">Data Validation</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/sehatak-health-forms" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d2" data-idx="03">
+        <div class="pglyph"><div>AI<small>RAG · Python</small></div></div>
+        <div class="pbody">
+          <div class="pkind">AI · Clinical Support</div>
+          <div class="ptitle">SKIN-VISION — Medical RAG System</div>
+          <div class="pdesc">
+            An AI clinical decision support system for dermatological diseases: retrieval-augmented
+            generation over medical sources, built in Python to support evidence-based answers.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Python</span><span class="tag">RAG</span>
+            <span class="tag">LLMs</span><span class="tag">AI Workflow</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/SKIN-VISION" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d3" data-idx="04">
+        <div class="pshot">
+          <img src="portfolio-assets/frame-studio.jpg" alt="Frame Studio photo frame editor interface" loading="lazy">
+          <b>Web App</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Product · Development</div>
+          <div class="ptitle">Frame Studio</div>
+          <div class="pdesc">
+            An online image frame editor: browser canvas, admin panel, asset library and a Google
+            Apps Script backend driving Drive storage and publishing.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">JavaScript</span><span class="tag">Apps Script</span>
+            <span class="tag">Drive API</span><span class="tag">Editor UI</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/frames" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal" data-idx="05">
+        <div class="pshot">
+          <img src="portfolio-assets/pbi-report.jpg" alt="Power BI retail sales report being built in Power BI Desktop" loading="lazy">
+          <b>Power BI</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">BI · Data Modelling</div>
+          <div class="ptitle">FoodMart BI — Retail Sales Model</div>
+          <div class="pdesc">
+            A Power BI (PBIP) retail analytics solution: star-schema data model, Power Query ETL and a
+            DAX measure layer covering sales, margin, category and store performance.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Power BI</span><span class="tag">Power Query</span>
+            <span class="tag">DAX</span><span class="tag">Star Schema</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="pcard reveal d1" data-idx="06">
+        <div class="pshot">
+          <img src="portfolio-assets/ops-dashboard.jpg" alt="Operations dashboard with KPI tiles and registration metrics" loading="lazy">
+          <b>Dashboard</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Operations · Analytics</div>
+          <div class="ptitle">Kobo Dashboard — Activations &amp; Registrations</div>
+          <div class="pdesc">
+            A live dashboard consolidating activations, registrations and campaign performance into
+            KPI tiles leadership can read in seconds — refreshed straight from KoboToolbox data.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">KoboToolbox</span><span class="tag">KPI Design</span>
+            <span class="tag">Google Sheets</span><span class="tag">Reporting</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/kobo-dashboard" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d2" data-idx="07">
+        <div class="pshot">
+          <img src="portfolio-assets/autoflex.jpg" alt="AutoFlex internal operations dashboard" loading="lazy">
+          <b>JavaScript</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Dashboard · Internal Tools</div>
+          <div class="ptitle">AutoFlex Dashboard</div>
+          <div class="pdesc">
+            An internal operations dashboard unifying recurring operational metrics into one
+            interface — built in JavaScript for fast loading and zero-friction daily use.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">JavaScript</span><span class="tag">Dashboard</span>
+            <span class="tag">Data Visualization</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/autoflex-dashboard" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d3" data-idx="08">
+        <div class="pshot">
+          <img src="portfolio-assets/tableau.jpg" alt="Tableau workbook with distribution histogram" loading="lazy">
+          <b>Tableau</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Visualization · Statistics</div>
+          <div class="ptitle">Tableau — Distribution Analysis</div>
+          <div class="pdesc">
+            Exploratory analysis in Tableau: calculated fields, binning and reference lines used to
+            profile customer value distribution and surface the segments worth acting on.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Tableau</span><span class="tag">Calculated Fields</span>
+            <span class="tag">Distributions</span><span class="tag">Storytelling</span>
+          </div>
+        </div>
+      </article>
+
+            <article class="pcard reveal" data-idx="09">
+        <div class="pshot">
+          <img src="portfolio-assets/events-dashboard.jpg" alt="First Step Events registration dashboard" loading="lazy">
+          <b>Events</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Dashboard · Events</div>
+          <div class="ptitle">First Step Events — Registration Dashboard</div>
+          <div class="pdesc">
+            An executive dashboard for event registration: speed, pace, quality and audience per event — runs offline in demo mode or live from a Google Sheet, with a filter engine, alerts and insights.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Apps Script</span><span class="tag">Chart.js</span><span class="tag">Filtering</span><span class="tag">Google Sheets</span>
+          </div>
+          <a class="plink" href="https://github.com/lifemakersclubit-art/first-step-events-dashboard" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d1" data-idx="10">
+        <div class="pshot">
+          <img src="portfolio-assets/gazb-dashboard.jpg" alt="GAZB Menoufia volunteer acquisition analytics dashboard" loading="lazy">
+          <b>Dashboard</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Analytics · Volunteer Ops</div>
+          <div class="ptitle">GAZB Menoufia — Volunteer Acquisition</div>
+          <div class="pdesc">
+            Seven analytical pages over volunteer records — demographics, geography, education, channels and skills — with 14 live dimensions and instant search that redraw every chart at once.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Apps Script</span><span class="tag">ECharts</span><span class="tag">Google Sheets</span><span class="tag">Search</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/dashboard_GAZB_MENOUFIA" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d2" data-idx="11">
+        <div class="pshot">
+          <img src="portfolio-assets/camp-iteulm.jpg" alt="Madarat Roots Camp registration system" loading="lazy">
+          <b>Registration</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Systems · Registration</div>
+          <div class="ptitle">Madarat | Roots Camp Registration</div>
+          <div class="pdesc">
+            Full electronic registration for the Madarat program: track quotas and settings held in one Google Sheet, an Apps Script API and a static front end deployed on GitHub Pages.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Apps Script</span><span class="tag">Google Sheets</span><span class="tag">Quota Logic</span><span class="tag">GitHub Pages</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/CAMP_ITUELM" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d3" data-idx="12">
+        <div class="pshot">
+          <img src="portfolio-assets/budget-system.jpg" alt="Budget management system overview screen" loading="lazy">
+          <b>Workflow</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Systems · Finance Ops</div>
+          <div class="ptitle">Budget &amp; Technical Requests</div>
+          <div class="pdesc">
+            Four request types with an approval workflow, automatic professional emails, thread replies and a full log — hardened with CSRF protection and rate limiting on the API.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Apps Script</span><span class="tag">Workflow</span><span class="tag">Email</span><span class="tag">Security</span>
+          </div>
+          <a class="plink" href="https://github.com/lifemakersclubit-art/budget-management-system" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal" data-idx="13">
+        <div class="pshot">
+          <img src="portfolio-assets/roots-camp.jpg" alt="Roots Camp evaluation dashboard with KPI tiles" loading="lazy">
+          <b>Dashboard</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Dashboard · Operations</div>
+          <div class="ptitle">Roots Camp — Central Monitoring</div>
+          <div class="pdesc">
+            Executive monitoring for the Roots Camp: attendance heat-maps, pre/post paired assessment, session feedback and task tracking across nine linked screens.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Apps Script</span><span class="tag">Charts</span><span class="tag">XLSX</span><span class="tag">Reporting</span>
+          </div>
+          <a class="plink" href="https://github.com/lifemakersclubit-art/lifemakersclubit-art" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d1" data-idx="14">
+        <div class="pshot">
+          <img src="portfolio-assets/sheets-masterclass.jpg" alt="Google Sheets masterclass course landing" loading="lazy">
+          <b>Course</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Education · Platform</div>
+          <div class="ptitle">Google Sheets Masterclass</div>
+          <div class="pdesc">
+            A complete course platform: 14 lessons, quizzes, an interactive formula simulator, glossary, progress tracker and a printable certificate generator.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">HTML</span><span class="tag">JavaScript</span><span class="tag">Learning Platform</span><span class="tag">Certificates</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/google_sheets_learning" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard" data-idx="15">
+        <div class="pshot">
+          <img src="portfolio-assets/esteqbal-dashboard.jpg" alt="Esteqbal Menoufia — Onboarding Dashboard interface" loading="lazy">
+          <b>Dashboard</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Analytics · Volunteer Ops</div>
+          <div class="ptitle">Esteqbal Menoufia — Onboarding Dashboard</div>
+          <div class="pdesc">
+            Orientation analytics: reception centres, satisfaction, assigned tasks and availability, with bundled charts plus PDF and XLSX export.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Apps Script</span><span class="tag">ECharts</span><span class="tag">Reporting</span><span class="tag">Export</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/dashboard_ESTEQBAL_MENOUFIA" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d1" data-idx="16">
+        <div class="pshot">
+          <img src="portfolio-assets/ezaees-festival.jpg" alt="Ezaees Festival 2026 — Registration Intelligence interface" loading="lazy">
+          <b>Dashboard</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Analytics · Events</div>
+          <div class="ptitle">Ezaees Festival 2026 — Registration Intelligence</div>
+          <div class="pdesc">
+            Analytics over festival registrations with an Apps Script API — no copied data, the dashboard fetches everything at runtime.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Apps Script</span><span class="tag">API</span><span class="tag">Charts</span><span class="tag">Google Sheets</span>
+          </div>
+          <a class="plink" href="https://github.com/lifemakersclubit-art/ezaees-festival-2026" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d2" data-idx="17">
+        <div class="pshot">
+          <img src="portfolio-assets/camp-dashboard.jpg" alt="Madarat Camp Dashboard interface" loading="lazy">
+          <b>Dashboard</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Dashboard · Volunteer Ops</div>
+          <div class="ptitle">Madarat Camp Dashboard</div>
+          <div class="pdesc">
+            A second view over the camp's registration data: distributions, self-assessment, committee skills and training needs.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Apps Script</span><span class="tag">Google Sheets</span><span class="tag">Charts</span>
+          </div>
+          <a class="plink" href="https://github.com/lifemakersclubit-art/ITUELM_CAMP_DASHBOARD" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d3" data-idx="18">
+        <div class="pshot">
+          <img src="portfolio-assets/camp-report.jpg" alt="Camp Evaluation Report interface" loading="lazy">
+          <b>Report</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Analytics · Report</div>
+          <div class="ptitle">Camp Evaluation Report</div>
+          <div class="pdesc">
+            An analytical evaluation of the training camp built from participant ratings, set as a single print-ready page.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">HTML</span><span class="tag">Analytics</span><span class="tag">Reporting</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/camp-report" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard" data-idx="19">
+        <div class="pshot">
+          <img src="portfolio-assets/media-report.jpg" alt="Media UniElm — Performance Report interface" loading="lazy">
+          <b>Report</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Reporting · Social</div>
+          <div class="ptitle">Media UniElm — Performance Report</div>
+          <div class="pdesc">
+            Social-media performance report for the club's accounts — reach, engagement and per-platform scores on one page.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">HTML</span><span class="tag">Chart.js</span><span class="tag">Reporting</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/Media_unielm_report" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d1" data-idx="20">
+        <div class="pshot">
+          <img src="portfolio-assets/satisfaction-dashboard.jpg" alt="Customer Satisfaction Dashboard interface" loading="lazy">
+          <b>Dashboard</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Analytics · Quality</div>
+          <div class="ptitle">Customer Satisfaction Dashboard</div>
+          <div class="pdesc">
+            Compact customer-satisfaction analytics: live KPIs, distribution breakdowns and a clean summary view stakeholders can read fast.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">HTML</span><span class="tag">Canvas</span><span class="tag">Analytics</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/dashboard_final" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d2" data-idx="21">
+        <div class="pshot">
+          <img src="portfolio-assets/query-room.jpg" alt="Query Room — Case Console interface" loading="lazy">
+          <b>System</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Systems · Case Management</div>
+          <div class="ptitle">Query Room — Case Console</div>
+          <div class="pdesc">
+            Intake console for logging and tracking cases — status management for a service room in one interface.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">HTML</span><span class="tag">Forms</span><span class="tag">Workflow</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/query-room" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d3" data-idx="22">
+        <div class="pshot">
+          <img src="portfolio-assets/donation-app.jpg" alt="Donation App interface" loading="lazy">
+          <b>Web App</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Product · Field Collection</div>
+          <div class="ptitle">Donation App</div>
+          <div class="pdesc">
+            Mobile-first donation capture for volunteers at Menoufia centres: records to Google Sheets and receipt images to Drive.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Apps Script</span><span class="tag">Drive API</span><span class="tag">Mobile</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/donation-app" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard" data-idx="23">
+        <div class="pshot">
+          <img src="portfolio-assets/request-flow.jpg" alt="RequestFlow interface" loading="lazy">
+          <b>Workflow</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Systems · Automation</div>
+          <div class="ptitle">RequestFlow</div>
+          <div class="pdesc">
+            A request form feeding an Apps Script API that creates a Drive document and logs every entry in Google Sheets.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Apps Script</span><span class="tag">Drive</span><span class="tag">Automation</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/RequestFlow" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d1" data-idx="24">
+        <div class="pshot">
+          <img src="portfolio-assets/etganen14.jpg" alt="Etganen 14 — Campaign Registration interface" loading="lazy">
+          <b>Form</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Forms · Campaign</div>
+          <div class="ptitle">Etganen 14 — Campaign Registration</div>
+          <div class="pdesc">
+            Campaign sign-up page wired to Google Apps Script: validation, quotas and a clean confirmation flow.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Apps Script</span><span class="tag">Forms</span><span class="tag">Google Sheets</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/etganen14" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d2" data-idx="25">
+        <div class="pshot">
+          <img src="portfolio-assets/fawzy-test.jpg" alt="Media Team Recruitment interface" loading="lazy">
+          <b>Form</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Forms · Recruitment</div>
+          <div class="ptitle">Media Team Recruitment</div>
+          <div class="pdesc">
+            Join-the-media-team recruitment form with structured fields, validation and a Sheets register.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Apps Script</span><span class="tag">Forms</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/fawzy_test" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d3" data-idx="26">
+        <div class="pshot">
+          <img src="portfolio-assets/azhar-attendance.jpg" alt="First Step — Attendance Check-In interface" loading="lazy">
+          <b>Event</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Events · Attendance</div>
+          <div class="ptitle">First Step — Attendance Check-In</div>
+          <div class="pdesc">
+            Attendance check-in page for the First Step event: fast staff access and instant registration status.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">HTML</span><span class="tag">JavaScript</span><span class="tag">Attendance</span>
+          </div>
+          <a class="plink" href="https://github.com/lifemakersclubit-art/azhar-attendance" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard" data-idx="27">
+        <div class="pshot">
+          <img src="portfolio-assets/kobo-referral.jpg" alt="Convoys Referral Form interface" loading="lazy">
+          <b>Form</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Forms · Healthcare</div>
+          <div class="ptitle">Convoys Referral Form</div>
+          <div class="pdesc">
+            Referral intake for medical convoys running on Flask with KoboToolbox and a Render deployment manifest.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Python</span><span class="tag">Flask</span><span class="tag">KoboToolbox</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/kobo-referral-form" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d1" data-idx="28">
+        <div class="pglyph"><div>PAGE<small>Welcome</small></div></div>
+        <div class="pbody">
+          <div class="pkind">Pages · Personal</div>
+          <div class="ptitle">Coordinator Welcome Page</div>
+          <div class="pdesc">
+            A personal welcome page for a volunteer coordinator — short, warm and fully static.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/rawan-welcome" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d2" data-idx="29">
+        <div class="pshot">
+          <img src="portfolio-assets/healthy-file.jpg" alt="The Healthy File — Menoufia interface" loading="lazy">
+          <b>Health</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Systems · Healthcare</div>
+          <div class="ptitle">The Healthy File — Menoufia</div>
+          <div class="pdesc">
+            The medical file for the governorate: drug inventory, transfers, contracts, aid and expenses, with offline utilities.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">HTML</span><span class="tag">Offline</span><span class="tag">XLSX</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/-------" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d3" data-idx="30">
+        <div class="pshot">
+          <img src="portfolio-assets/convoys-guide.jpg" alt="Sehna — Convoys Operations Guide interface" loading="lazy">
+          <b>Field</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Field Ops · Guide</div>
+          <div class="ptitle">Sehna — Convoys Operations Guide</div>
+          <div class="pdesc">
+            Operating guide for medical convoys as a small web app — procedures, roles and field checklists.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">HTML</span><span class="tag">JavaScript</span><span class="tag">Guide</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/SEHTNA_OPERATIONS_CONVOYS" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard" data-idx="31">
+        <div class="pshot">
+          <img src="portfolio-assets/medical-aid.jpg" alt="Medical Aid Registration interface" loading="lazy">
+          <b>Form</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Forms · Healthcare</div>
+          <div class="ptitle">Medical Aid Registration</div>
+          <div class="pdesc">
+            Registration form for medical aid cases — structured intake built for fast field use.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">HTML</span><span class="tag">Form</span>
+          </div>
+          <a class="plink" href="https://github.com/lifemakersclubit-art/medical-aid-form" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d1" data-idx="32">
+        <div class="pglyph"><div>FORM<small>Inquiry</small></div></div>
+        <div class="pbody">
+          <div class="pkind">Forms · Healthcare</div>
+          <div class="ptitle">Inquiry Room Form — v2</div>
+          <div class="pdesc">
+            Second iteration of the inquiry-room intake form, tuned for shorter field workflows.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">HTML</span><span class="tag">Form</span>
+          </div>
+          <a class="plink" href="https://github.com/lifemakersclubit-art/sehtnamlm2" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d2" data-idx="33">
+        <div class="pglyph"><div>FORM<small>Medical Aid</small></div></div>
+        <div class="pbody">
+          <div class="pkind">Forms · Healthcare</div>
+          <div class="ptitle">Medical Aid Form — v3</div>
+          <div class="pdesc">
+            Revised medical-aid registration with clearer fields and validation.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">HTML</span><span class="tag">Form</span>
+          </div>
+          <a class="plink" href="https://github.com/lifemakersclubit-art/sehtnamlm3" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d3" data-idx="34">
+        <div class="pshot">
+          <img src="portfolio-assets/sheets-academy.jpg" alt="Sheets Academy — Lessons interface" loading="lazy">
+          <b>Course</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Education · Course</div>
+          <div class="ptitle">Sheets Academy — Lessons</div>
+          <div class="pdesc">
+            Static RTL course site: thirteen lesson pages plus a comprehensive final exam.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">HTML</span><span class="tag">Course</span><span class="tag">RTL</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/Google_Sheets_LearningIT" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard" data-idx="35">
+        <div class="pglyph"><div>REACT<small>TypeScript</small></div></div>
+        <div class="pbody">
+          <div class="pkind">Education · Platform</div>
+          <div class="ptitle">Sheets Academy — React Build</div>
+          <div class="pdesc">
+            React + TypeScript rebuild of the academy: landing, modules, interactive simulator and animated scroll reveals.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">React</span><span class="tag">TypeScript</span><span class="tag">Vite</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/google_sheets_learning_IT" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d1" data-idx="36">
+        <div class="pshot">
+          <img src="portfolio-assets/iteulm-laws.jpg" alt="IT Committee Bylaws interface" loading="lazy">
+          <b>Docs</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Content · Governance</div>
+          <div class="ptitle">IT Committee Bylaws</div>
+          <div class="pdesc">
+            Interactive viewer for the IT &amp; Digital Transformation committee bylaws — content-driven pages.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">JavaScript</span><span class="tag">Content</span>
+          </div>
+          <a class="plink" href="https://github.com/lifemakersclubit-art/ITUELM_LAWS" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d2" data-idx="37">
+        <div class="pshot">
+          <img src="portfolio-assets/nti-learning.jpg" alt="NTI Learning Platform interface" loading="lazy">
+          <b>Platform</b>
+        </div>
+        <div class="pbody">
+          <div class="pkind">Education · Platform</div>
+          <div class="ptitle">NTI Learning Platform</div>
+          <div class="pdesc">
+            Single-page learning platform driven by a course catalogue — modules, progress and clean navigation.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">HTML</span><span class="tag">JavaScript</span><span class="tag">Course</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/nti-learning-platform" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d3" data-idx="38">
+        <div class="pglyph"><div>AI<small>PPTX · TS</small></div></div>
+        <div class="pbody">
+          <div class="pkind">AI · Product</div>
+          <div class="ptitle">Nara — AI to PPTX Studio</div>
+          <div class="pdesc">
+            React dashboard that turns prompts into structured outlines and exports PPTX and PDF — chat, literature and vision tabs.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">React</span><span class="tag">TypeScript</span><span class="tag">AI</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/Nara-AI-Dashboard-main" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard" data-idx="39">
+        <div class="pglyph"><div>CANVAS<small>Particles</small></div></div>
+        <div class="pbody">
+          <div class="pkind">Creative · Animation</div>
+          <div class="ptitle">Eid Greeting Microsite</div>
+          <div class="pdesc">
+            Holiday greeting page built on canvas particles — a small seasonal animation experiment.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Canvas</span><span class="tag">JavaScript</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/Eid_celebration" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d1" data-idx="40">
+        <div class="pglyph"><div>EVENT<small>Animation</small></div></div>
+        <div class="pbody">
+          <div class="pkind">Creative · Animation</div>
+          <div class="ptitle">The Last Dance — Event Page</div>
+          <div class="pdesc">
+            Animated closing-event microsite driven by canvas particles.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">Canvas</span><span class="tag">Animation</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/ITUELM_THE_LAST_DANCE" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+      <article class="pcard reveal d2" data-idx="41">
+        <div class="pglyph"><div>LOGIN<small>Scratch</small></div></div>
+        <div class="pbody">
+          <div class="pkind">Experiments · UI</div>
+          <div class="ptitle">Login Experiment</div>
+          <div class="pdesc">
+            A small login-page experiment kept as a scratch repository.
+          </div>
+          <div class="ptags">
+            <span class="tag solid">HTML</span><span class="tag">JavaScript</span>
+          </div>
+          <a class="plink" href="https://github.com/kareemshair2/testit" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </article>
+
+
+      <a class="pcta reveal" href="https://github.com/kareemshair2" target="_blank" rel="noopener">
+        <p>42 repositories · 40+ shipped projects</p>
+        <h3>Explore the full collection on GitHub</h3>
+        <span class="go">Open profile →</span>
+      </a>
+
+    </div>
+<div class="catalog" id="catalog">
+      <div class="sec-head reveal">
+        <div class="sec-code"><span>04·B / Repository Log</span><span class="ln"></span><span class="dim">42 public repositories · 38 builds indexed · 2 GitHub accounts</span></div>
+        <h2 class="cat-title">Full <em>index</em></h2>
+        <p class="sec-lede">
+          Every repository on file — dashboards, forms, field tools and learning platforms.
+          Each entry opens its source.
+        </p>
+      </div>
+
+      <div class="cat-groups">
+      <div class="cat-group reveal d0">
+        <div class="cat-ghead"><span>Dashboards &amp; Analytics</span><i></i><b>12 entries</b></div>
+        <div class="cat-rows">
+        <a class="cat-row" href="https://github.com/kareemshair2/autoflex-dashboard" target="_blank" rel="noopener">
+          <span class="cat-idx">R-01</span>
+          <span class="cat-name">autoflex-dashboard<em>LIVE</em></span>
+          <span class="cat-desc">Arabic finance ops dashboard: expenses, procurement, invoices and returns.</span>
+          <span class="cat-tags">Apps Script · Chart.js · Sheets</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/dashboard_GAZB_MENOUFIA" target="_blank" rel="noopener">
+          <span class="cat-idx">R-02</span>
+          <span class="cat-name">dashboard_GAZB_MENOUFIA<em>LIVE</em></span>
+          <span class="cat-desc">Volunteer acquisition analytics: 7 pages, 14 live filters, instant search.</span>
+          <span class="cat-tags">Apps Script · ECharts · Pages</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/dashboard_ESTEQBAL_MENOUFIA" target="_blank" rel="noopener">
+          <span class="cat-idx">R-03</span>
+          <span class="cat-name">dashboard_ESTEQBAL_MENOUFIA</span>
+          <span class="cat-desc">Onboarding dashboard: centres, satisfaction, tasks and availability.</span>
+          <span class="cat-tags">Apps Script · ECharts</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/kobo-dashboard" target="_blank" rel="noopener">
+          <span class="cat-idx">R-04</span>
+          <span class="cat-name">kobo-dashboard<em>LIVE</em></span>
+          <span class="cat-desc">Activations and registrations board fed straight from KoboToolbox.</span>
+          <span class="cat-tags">Apps Script · Kobo · Sheets</span>
+        </a>
+        <a class="cat-row" href="https://github.com/lifemakersclubit-art/lifemakersclubit-art" target="_blank" rel="noopener">
+          <span class="cat-idx">R-05</span>
+          <span class="cat-name">lifemakersclubit-art<em>LIVE</em></span>
+          <span class="cat-desc">Roots Camp monitoring: attendance heat-maps, paired assessment, feedback.</span>
+          <span class="cat-tags">Apps Script · Charts · XLSX</span>
+        </a>
+        <a class="cat-row" href="https://github.com/lifemakersclubit-art/first-step-events-dashboard" target="_blank" rel="noopener">
+          <span class="cat-idx">R-06</span>
+          <span class="cat-name">first-step-events-dashboard<em>LIVE</em></span>
+          <span class="cat-desc">Events dashboard: registration speed, pace, quality and audience — offline demo or live sheet.</span>
+          <span class="cat-tags">Apps Script · Chart.js · Filters</span>
+        </a>
+        <a class="cat-row" href="https://github.com/lifemakersclubit-art/ezaees-festival-2026" target="_blank" rel="noopener">
+          <span class="cat-idx">R-07</span>
+          <span class="cat-name">ezaees-festival-2026</span>
+          <span class="cat-desc">Festival registration intelligence with an Apps Script API and zero copied data.</span>
+          <span class="cat-tags">Apps Script · API · Charts</span>
+        </a>
+        <a class="cat-row" href="https://github.com/lifemakersclubit-art/ITUELM_CAMP_DASHBOARD" target="_blank" rel="noopener">
+          <span class="cat-idx">R-08</span>
+          <span class="cat-name">ITUELM_CAMP_DASHBOARD</span>
+          <span class="cat-desc">Camp dashboard reading live registration data: distributions and training needs.</span>
+          <span class="cat-tags">Apps Script · Sheets</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/camp-report" target="_blank" rel="noopener">
+          <span class="cat-idx">R-09</span>
+          <span class="cat-name">camp-report</span>
+          <span class="cat-desc">Analytical evaluation of the training camp built from participant ratings.</span>
+          <span class="cat-tags">HTML · Analytics</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/Media_unielm_report" target="_blank" rel="noopener">
+          <span class="cat-idx">R-10</span>
+          <span class="cat-name">Media_unielm_report</span>
+          <span class="cat-desc">Social-media performance report with per-platform charts.</span>
+          <span class="cat-tags">HTML · Chart.js</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/dashboard_final" target="_blank" rel="noopener">
+          <span class="cat-idx">R-11</span>
+          <span class="cat-name">dashboard_final</span>
+          <span class="cat-desc">Customer-satisfaction analysis one-pager.</span>
+          <span class="cat-tags">HTML · Canvas</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/query-room" target="_blank" rel="noopener">
+          <span class="cat-idx">R-12</span>
+          <span class="cat-name">query-room</span>
+          <span class="cat-desc">Case/query room console for logging and tracking cases.</span>
+          <span class="cat-tags">HTML · Forms</span>
+        </a>
+        </div>
+      </div>
+      <div class="cat-group reveal d1">
+        <div class="cat-ghead"><span>Registration &amp; Forms</span><i></i><b>9 entries</b></div>
+        <div class="cat-rows">
+        <a class="cat-row" href="https://github.com/kareemshair2/CAMP_ITUELM" target="_blank" rel="noopener">
+          <span class="cat-idx">R-13</span>
+          <span class="cat-name">CAMP_ITUELM<em>LIVE</em></span>
+          <span class="cat-desc">Madarat | Roots Camp registration system: track quotas, settings sheet, Apps Script API.</span>
+          <span class="cat-tags">Apps Script · Sheets · Pages</span>
+        </a>
+        <a class="cat-row" href="https://github.com/lifemakersclubit-art/budget-management-system" target="_blank" rel="noopener">
+          <span class="cat-idx">R-14</span>
+          <span class="cat-name">budget-management-system<em>LIVE</em></span>
+          <span class="cat-desc">Budget and technical-request workflow: approvals, email threads, CSRF and rate limits.</span>
+          <span class="cat-tags">Apps Script · Workflow · Email</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/donation-app" target="_blank" rel="noopener">
+          <span class="cat-idx">R-15</span>
+          <span class="cat-name">donation-app</span>
+          <span class="cat-desc">Mobile-first donation capture with receipt uploads to Google Drive.</span>
+          <span class="cat-tags">Apps Script · Drive · Pages</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/RequestFlow" target="_blank" rel="noopener">
+          <span class="cat-idx">R-16</span>
+          <span class="cat-name">RequestFlow</span>
+          <span class="cat-desc">Request form to Drive document plus a Sheets register.</span>
+          <span class="cat-tags">Apps Script · Drive</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/etganen14" target="_blank" rel="noopener">
+          <span class="cat-idx">R-17</span>
+          <span class="cat-name">etganen14</span>
+          <span class="cat-desc">Etganen 14 campaign sign-up page.</span>
+          <span class="cat-tags">Apps Script · Forms</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/fawzy_test" target="_blank" rel="noopener">
+          <span class="cat-idx">R-18</span>
+          <span class="cat-name">fawzy_test</span>
+          <span class="cat-desc">Media team recruitment form.</span>
+          <span class="cat-tags">Apps Script · Forms</span>
+        </a>
+        <a class="cat-row" href="https://github.com/lifemakersclubit-art/azhar-attendance" target="_blank" rel="noopener">
+          <span class="cat-idx">R-19</span>
+          <span class="cat-name">azhar-attendance</span>
+          <span class="cat-desc">Attendance check-in page for the First Step event.</span>
+          <span class="cat-tags">HTML · Attendance</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/kobo-referral-form" target="_blank" rel="noopener">
+          <span class="cat-idx">R-20</span>
+          <span class="cat-name">kobo-referral-form</span>
+          <span class="cat-desc">Convoys referral intake on Flask with KoboToolbox and a Render manifest.</span>
+          <span class="cat-tags">Python · Flask · Kobo</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/rawan-welcome" target="_blank" rel="noopener">
+          <span class="cat-idx">R-21</span>
+          <span class="cat-name">rawan-welcome</span>
+          <span class="cat-desc">Personal welcome page for a volunteer coordinator.</span>
+          <span class="cat-tags">HTML · CSS · JS</span>
+        </a>
+        </div>
+      </div>
+      <div class="cat-group reveal d2">
+        <div class="cat-ghead"><span>Health &amp; Field Operations</span><i></i><b>6 entries</b></div>
+        <div class="cat-rows">
+        <a class="cat-row" href="https://github.com/kareemshair2/sehatak-health-forms" target="_blank" rel="noopener">
+          <span class="cat-idx">R-22</span>
+          <span class="cat-name">sehatak-health-forms<em>LIVE</em></span>
+          <span class="cat-desc">The Healthy File: convoy drugs, transfers, contracts, aid, expenses and results.</span>
+          <span class="cat-tags">HTML · XLSX · Apps Script</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/-------" target="_blank" rel="noopener">
+          <span class="cat-idx">R-23</span>
+          <span class="cat-name">-------</span>
+          <span class="cat-desc">Parallel build of the Menoufia medical file with offline utilities.</span>
+          <span class="cat-tags">HTML · Offline</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/SEHTNA_OPERATIONS_CONVOYS" target="_blank" rel="noopener">
+          <span class="cat-idx">R-24</span>
+          <span class="cat-name">SEHTNA_OPERATIONS_CONVOYS</span>
+          <span class="cat-desc">Operating guide for medical convoys as a small web app.</span>
+          <span class="cat-tags">HTML · JS</span>
+        </a>
+        <a class="cat-row" href="https://github.com/lifemakersclubit-art/medical-aid-form" target="_blank" rel="noopener">
+          <span class="cat-idx">R-25</span>
+          <span class="cat-name">medical-aid-form</span>
+          <span class="cat-desc">Medical aid registration form.</span>
+          <span class="cat-tags">HTML · Form</span>
+        </a>
+        <a class="cat-row" href="https://github.com/lifemakersclubit-art/sehtnamlm2" target="_blank" rel="noopener">
+          <span class="cat-idx">R-26</span>
+          <span class="cat-name">sehtnamlm2</span>
+          <span class="cat-desc">Inquiry-room form iteration.</span>
+          <span class="cat-tags">HTML · Form</span>
+        </a>
+        <a class="cat-row" href="https://github.com/lifemakersclubit-art/sehtnamlm3" target="_blank" rel="noopener">
+          <span class="cat-idx">R-27</span>
+          <span class="cat-name">sehtnamlm3</span>
+          <span class="cat-desc">Medical aid form, revised version.</span>
+          <span class="cat-tags">HTML · Form</span>
+        </a>
+        </div>
+      </div>
+      <div class="cat-group reveal d0">
+        <div class="cat-ghead"><span>Education &amp; Training</span><i></i><b>5 entries</b></div>
+        <div class="cat-rows">
+        <a class="cat-row" href="https://github.com/kareemshair2/google_sheets_learning" target="_blank" rel="noopener">
+          <span class="cat-idx">R-28</span>
+          <span class="cat-name">google_sheets_learning<em>LIVE</em></span>
+          <span class="cat-desc">Google Sheets Masterclass: 14 lessons, quizzes, simulator and certificates.</span>
+          <span class="cat-tags">HTML · JS · Generator</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/Google_Sheets_LearningIT" target="_blank" rel="noopener">
+          <span class="cat-idx">R-29</span>
+          <span class="cat-name">Google_Sheets_LearningIT</span>
+          <span class="cat-desc">Sheets Academy lesson site with a comprehensive final exam.</span>
+          <span class="cat-tags">HTML · Course</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/google_sheets_learning_IT" target="_blank" rel="noopener">
+          <span class="cat-idx">R-30</span>
+          <span class="cat-name">google_sheets_learning_IT</span>
+          <span class="cat-desc">React + TypeScript rebuild of Sheets Academy with a live simulator.</span>
+          <span class="cat-tags">React · Vite · TS</span>
+        </a>
+        <a class="cat-row" href="https://github.com/lifemakersclubit-art/ITUELM_LAWS" target="_blank" rel="noopener">
+          <span class="cat-idx">R-31</span>
+          <span class="cat-name">ITUELM_LAWS</span>
+          <span class="cat-desc">Interactive viewer for the IT committee bylaws.</span>
+          <span class="cat-tags">JS · Content</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/nti-learning-platform" target="_blank" rel="noopener">
+          <span class="cat-idx">R-32</span>
+          <span class="cat-name">nti-learning-platform</span>
+          <span class="cat-desc">Single-page learning platform driven by a course catalogue.</span>
+          <span class="cat-tags">HTML · JS</span>
+        </a>
+        </div>
+      </div>
+      <div class="cat-group reveal d1">
+        <div class="cat-ghead"><span>AI, Creative &amp; Experiments</span><i></i><b>6 entries</b></div>
+        <div class="cat-rows">
+        <a class="cat-row" href="https://github.com/kareemshair2/SKIN-VISION" target="_blank" rel="noopener">
+          <span class="cat-idx">R-33</span>
+          <span class="cat-name">SKIN-VISION<em>LIVE</em></span>
+          <span class="cat-desc">Dermatology RAG system: ingestion, embeddings, retrieval and generation.</span>
+          <span class="cat-tags">Python · LangChain · Docker</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/Nara-AI-Dashboard-main" target="_blank" rel="noopener">
+          <span class="cat-idx">R-34</span>
+          <span class="cat-name">Nara-AI-Dashboard-main</span>
+          <span class="cat-desc">AI-to-PPTX studio UI: chat, literature and document export.</span>
+          <span class="cat-tags">React · TS · Vercel</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/frames" target="_blank" rel="noopener">
+          <span class="cat-idx">R-35</span>
+          <span class="cat-name">frames<em>LIVE</em></span>
+          <span class="cat-desc">Frame Studio: in-browser photo frame editor with export and sharing.</span>
+          <span class="cat-tags">Canvas · JS</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/Eid_celebration" target="_blank" rel="noopener">
+          <span class="cat-idx">R-36</span>
+          <span class="cat-name">Eid_celebration</span>
+          <span class="cat-desc">Eid greeting microsite with canvas particles.</span>
+          <span class="cat-tags">Canvas · Animation</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/ITUELM_THE_LAST_DANCE" target="_blank" rel="noopener">
+          <span class="cat-idx">R-37</span>
+          <span class="cat-name">ITUELM_THE_LAST_DANCE</span>
+          <span class="cat-desc">Animated closing-event microsite.</span>
+          <span class="cat-tags">Canvas · Animation</span>
+        </a>
+        <a class="cat-row" href="https://github.com/kareemshair2/testit" target="_blank" rel="noopener">
+          <span class="cat-idx">R-38</span>
+          <span class="cat-name">testit</span>
+          <span class="cat-desc">Login page experiment.</span>
+          <span class="cat-tags">HTML · JS</span>
+        </a>
+        </div>
+      </div>
+      </div>
+    </div>
+
+  </div>
+    </section>
+
+<!-- ══ EDUCATION ══ -->
+<section class="edu" id="education">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-code"><span>05 / Education</span><span class="ln"></span><span class="dim">Academic Background</span></div>
+      <h2 class="sec-title">Academic <em>record</em></h2>
+    </div>
+
+    <div class="panel edu-card reveal">
+      <div class="edu-kicker">Undergraduate · Engineering</div>
+      <div class="edu-title">B.Sc. in Electrical Engineering &amp; Computer Science</div>
+      <div class="edu-org">Faculty of Electronic Engineering, Menoufia University</div>
+      <div class="edu-date">Expected Graduation — 2029</div>
+      <div class="edu-desc">
+        Building a strong engineering foundation with a focus on computer science — bridging hardware
+        discipline with data analysis, business intelligence, automation and applied AI.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COMPETENCIES ══ -->
+<section class="competencies" id="competencies">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-code"><span>06 / Core Competencies</span><span class="ln"></span><span class="dim">Soft Skills</span></div>
+      <h2 class="sec-title">How I <em>work</em></h2>
+    </div>
+
+    <div class="comp-grid reveal">
+      <div class="comp"><i></i> Analytical Thinking</div>
+      <div class="comp"><i></i> Problem Solving</div>
+      <div class="comp"><i></i> Data-Driven Decisions</div>
+      <div class="comp"><i></i> Leadership</div>
+      <div class="comp"><i></i> Team Collaboration</div>
+      <div class="comp"><i></i> Communication</div>
+      <div class="comp"><i></i> Project Coordination</div>
+      <div class="comp"><i></i> Process Improvement</div>
+      <div class="comp"><i></i> Critical Thinking</div>
+      <div class="comp"><i></i> Fast Learning</div>
+      <div class="comp"><i></i> Adaptability</div>
+      <div class="comp"><i></i> Attention to Detail</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LANGUAGES ══ -->
+<section class="langs" id="languages">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-code"><span>07 / Languages</span><span class="ln"></span><span class="dim">Communication</span></div>
+      <h2 class="sec-title">I <em>speak</em></h2>
+    </div>
+
+    <div>
+      <div class="lang reveal">
+        <div class="lang-flag">🇪🇬</div>
+        <div class="lang-name">Arabic</div>
+        <div class="lang-bar"><div class="lang-fill" data-width="100"></div></div>
+        <div class="lang-level">Native</div>
+      </div>
+      <div class="lang reveal d1">
+        <div class="lang-flag">🇬🇧</div>
+        <div class="lang-name">English</div>
+        <div class="lang-bar"><div class="lang-fill" data-width="78"></div></div>
+        <div class="lang-level">B2</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hazard"></div>
+
+<!-- ══ CONTACT ══ -->
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="sec-code"><span>08 / Contact</span><span class="ln"></span><span class="dim">Channel open</span></div>
+      <h2>Let's build something <em>impactful</em></h2>
+      <p>
+        Looking for a data analyst who owns the whole chain — Python, SQL, Power BI, Tableau,
+        Excel modelling and AI-assisted automation — with real organizational impact behind it?
+        Let's connect.
+      </p>
+    </div>
+    <div class="contact-actions reveal d1">
+      <a href="mailto:Kareem.shair2@gmail.com" class="btn btn-dark">✉ Email Me</a>
+      <a href="tel:+201032894453" class="btn btn-ghost-dark">☎ Call +20 01032894453</a>
+      <a href="https://github.com/kareemshair2" target="_blank" rel="noopener" class="btn btn-ghost-dark">⌥ GitHub Profile</a>
+      <div class="contact-meta">Replies within 24 hours</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="foot">
+  <div class="foot-in">
+    <div>
+      <div class="foot-brand">Kareem Ahmed Abdelwahab</div>
+      <div class="foot-tag">Data Analyst · Python · SQL · Power BI · Tableau · AI</div>
+    </div>
+    <div class="foot-soc">
+      <a href="mailto:Kareem.shair2@gmail.com" class="f-soc" title="Email">@</a>
+      <a href="tel:+201032894453" class="f-soc" title="Phone">T</a>
+      <a href="https://github.com/kareemshair2" target="_blank" rel="noopener" class="f-soc" title="GitHub">GH</a>
+    </div>
+    <div class="foot-copy">
+      <span>© 2026 Kareem Ahmed · Crafted with data, automation &amp; passion</span>
+      <span>Set in Syne · Chivo · IBM Plex Mono</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<button id="up" aria-label="Back to top">↑</button>
+
+<script>
+(function () {
+  var body = document.body;
+
+  function boot() {
+    document.getElementById('boot').classList.add('hidden');
+    body.classList.add('ready');
+  }
+  window.addEventListener('load', function () { setTimeout(boot, 550); });
+  setTimeout(boot, 3200);
+
+  // Typed roles
+  var roles = [
+    'Data Analyst',
+    'Power BI & Tableau Developer',
+    'Python · SQL Practitioner',
+    'Power Query / Power Pivot Modeller',
+    'AI & Automation Enthusiast'
+  ];
+  var el = document.getElementById('typed');
+  var ri = 0, ci = 0, del = false;
+  function type() {
+    var w = roles[ri], sp = del ? 38 : 88;
+    if (!del) {
+      ci++; el.textContent = w.slice(0, ci);
+      if (ci === w.length) { del = true; sp = 1750; }
+    } else {
+      ci--; el.textContent = w.slice(0, ci);
+      if (ci === 0) { del = false; ri = (ri + 1) % roles.length; sp = 340; }
+    }
+    setTimeout(type, sp);
+  }
+  type();
+
+  // Bar / progress
+  var bar = document.getElementById('bar');
+  var up = document.getElementById('up');
+  var prog = document.getElementById('rail-prog');
+  function onScroll() {
+    var y = window.scrollY;
+    bar.classList.toggle('stuck', y > 40);
+    up.classList.toggle('show', y > 520);
+    if (prog) {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      prog.style.height = (h > 0 ? (y / h) * 100 : 0) + '%';
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  up.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  // Mobile menu
+  var burger = document.getElementById('burger');
+  burger.addEventListener('click', function () { bar.classList.toggle('open'); });
+  document.querySelectorAll('.bar-links a').forEach(function (a) {
+    a.addEventListener('click', function () { bar.classList.remove('open'); });
+  });
+
+  // Scrollspy (top bar + rail)
+  var links = document.querySelectorAll('.bar-links a');
+  var railLinks = document.querySelectorAll('.rail-nav a');
+  var secs = [];
+  links.forEach(function (l) {
+    var s = document.querySelector(l.getAttribute('href'));
+    if (s) secs.push({ link: l, sec: s });
+  });
+  function spy() {
+    var pos = window.scrollY + 140, cur = null;
+    secs.forEach(function (s) { if (s.sec.offsetTop <= pos) cur = s.link; });
+    secs.forEach(function (s) { s.link.classList.toggle('active', s.link === cur); });
+    railLinks.forEach(function (r) {
+      r.classList.toggle('active', cur && r.getAttribute('href') === cur.getAttribute('href'));
+    });
+  }
+  window.addEventListener('scroll', spy, { passive: true });
+  spy();
+
+  // Reveal
+  var ro = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('on'); ro.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(function (n) { ro.observe(n); });
+
+  // Meters / language bars
+  var mo = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (e.isIntersecting) {
+        var el = e.target;
+        el.style.width = el.getAttribute('data-width') + '%';
+        mo.unobserve(el);
+      }
+    });
+  }, { threshold: 0.35 });
+  document.querySelectorAll('.meter-fill, .lang-fill').forEach(function (n) { mo.observe(n); });
+
+  // Counters
+  var co = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      var start = null, dur = 1500;
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      co.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(function (n) { co.observe(n); });
+})();
+</script>
+
+</body>
+</html>
