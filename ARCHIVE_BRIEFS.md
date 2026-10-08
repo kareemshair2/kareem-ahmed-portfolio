@@ -119,3 +119,56 @@ Near-copy of `CAMP_ITUELM` (same README, no `screenshot.png`). Skipped.
 ### `APP` — Calorie & Nutrition Tracker Pro (AI Studio prompt)
 A 374-line specification written for Google AI Studio (design system, palette, RTL/dark modes,
 localStorage data model). Prompts are not shipped builds — documented here, not carded.
+
+---
+
+## D. Decks & reports — Telegram drop `Audit_Documents_2026-10-07` (10 cards)
+
+Documents-only drop (535 files · 808 MB). The ten entries below are carded in all three editions
+and listed under the catalog group **Decks & Reports · Documents**; full audit: `DOCUMENT_BRIEFS.md`
+in the drop.
+
+### `AI_Data_Analysis_Mastery.pptx` — Data Analysis with AI · Ministry Playbook
+Arabic briefing deck: *تحليل البيانات باستخدام الذكاء الاصطناعي — دليل الممارس الذكي لتحليل
+البيانات في وزارات (2024–2026)*. 90-minute session, 60 slides of content, 30 applied exercises,
+Excel-to-Python workflow. **Asset:** `deck-data-ai.jpg`.
+
+### `AI_Mastery_Blueprint.pptx` — AI Mastery Fundamentals · Course Blueprint
+15 slides: *من الصفر إلى هندسة الأوامر واختيار النموذج المناسب* — prompt engineering, model
+selection and a fundamentals→application track for a partner institution's teams.
+**Asset:** `deck-ai-mastery.jpg`.
+
+### `Strategic_Training_Analysis.pptx` + `Strategic_Training_Impact` (6 revisions) — Program Evaluation
+Evaluation pair: a 10-slide analytical report (impact measurement, content-quality scoring,
+strategic recommendations for trainers) and a 13–15-slide impact deck (*تحويل الطاقات التطوعية إلى
+كفاءات مؤسسية*) in six successive versions. **Asset:** `deck-training-eval.jpg`.
+
+### `The_Growth_Blueprint.pptx` (+ `.pdf`) — Leadership Pipeline · Strategic Impact Report
+Version-two impact report for *مشروع إعداد القادة: من التأسيس إلى التأثير المستدام* — measurement
+framework and strategic recommendations for the association's development file (13 slides).
+**Asset:** `deck-leadership.jpg`.
+
+### `Technical_English_Blueprint.pptx` — The Technical English Playbook
+Version 1.0, *mastering the language of engineering*: a functional toolkit for articulating
+mechanics, materials and superior design (15 slides). **Asset:** `deck-technical-english.jpg`.
+
+### `الذكاء_الاصطناعي_في_التصميم_والمونتاج2.pptx` (+ simplified cut) — AI in Design & Editing
+28-slide Arabic deck (full and simplified) on using AI as a creative co-pilot for identity work,
+video and content production, written for non-specialists. **Asset:** `deck-ai-design.jpg`.
+
+### `الدليل التشغيلي للقوافل الطبية.docx` — Medical Convoys · Operations Manual
+Arabic SOP for the medical convoys of the Menoufia medical file: planning, execution and
+follow-up steps that standardise how services reach the neediest villages.
+
+### `تقرير_Teachable_Machine.docx` (+ `بلا عنوان.docx`) — Teachable Machine · Vision Report
+Report for a published image-classification model (Teachable Machine link included) plus field
+notes on lighting, white balance and sample coverage and how each problem was solved.
+
+### `Guide_ Using Claude Code with a Free Proxy.docx` — Claude Code & MCP · Field Guide
+Five free MCP servers for Claude Code (search, browser control, scraping, image generation) with
+install steps, plus proxy notes for running the toolchain without a paid plan.
+
+### `presentation_EN.md` + `presentation_AR.md` + `pitch_1min.md` — Life Makers Dashboards · Presentation Pack
+EN/AR technical walkthrough of the two Life Makers Menoufia dashboards (single merged Apps Script
+backend, one request per page, Arabic-first RTL) plus a one-minute pitch — 1,291 volunteers, five
+analytical pages, 30 ECharts visualisations.
