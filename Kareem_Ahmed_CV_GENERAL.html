@@ -283,9 +283,70 @@ img{max-width:100%;display:block}
 
 .svc-thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0 4px}
 .svc-thumbs img{display:block;width:100%;height:64px;object-fit:cover;border:1px solid var(--line);filter:saturate(.92)}
+
+/* ═══ GATE (password lock) ═══ */
+html.locked{overflow:hidden}
+html.locked body>*:not(#gate){visibility:hidden!important}
+#gate{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(900px 420px at 50% -10%,rgba(251,174,66,.18),transparent 60%),#F4F3EF;
+  font-family:var(--font-b),sans-serif}
+.gate-card{background:#FBFAF7;border:1px solid rgba(1,73,118,.18);border-top:4px solid #014976;
+  padding:42px 40px;width:min(420px,92vw);text-align:center;box-shadow:8px 8px 0 rgba(1,73,118,.10)}
+.gate-mark{width:52px;height:52px;margin:0 auto 18px;border:2px solid #014976;color:#014976;
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.5rem;
+  font-family:var(--font-d),serif}
+.gate-title{color:#014976;font-weight:800;font-size:1.3rem;margin-bottom:8px}
+.gate-sub{color:#6D7B85;font-size:.92rem;margin-bottom:22px}
+#gate-form{display:flex;gap:10px}
+#gate-pass{flex:1;background:#fff;border:1px solid rgba(1,73,118,.28);color:#0A1E2E;
+  padding:12px 14px;font-family:var(--font-m),monospace;font-size:1rem;outline:none}
+#gate-pass:focus{border-color:#014976}
+#gate-form button{background:#014976;color:#F4F3EF;border:0;padding:12px 22px;font-weight:800;
+  font-family:var(--font-b),sans-serif;font-size:.95rem;cursor:pointer}
+#gate-form button:hover{background:#01304E}
+#gate-err{margin-top:14px;color:#E08C1B;font-size:.88rem}
+#gate.shake .gate-card{animation:gshake .42s}
+@keyframes gshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-9px)}75%{transform:translateX(9px)}}
 </style>
-</head>
+
+<script>try{if(!sessionStorage.getItem('ka_g'))document.documentElement.classList.add('locked');else document.getElementById&&0;}catch(e){document.documentElement.classList.add('locked');}</script></head>
 <body>
+<div id="gate" role="dialog" aria-modal="true" lang="ar" dir="rtl">
+  <div class="gate-card">
+    <div class="gate-mark">K</div>
+    <div class="gate-title">هذه الصفحة محمية</div>
+    <div class="gate-sub">أدخل باسوورد الوصول لمشاهدة المشاريع</div>
+    <form id="gate-form" autocomplete="off">
+      <input id="gate-pass" type="password" placeholder="الباسوورد" autocomplete="off" required>
+      <button type="submit">دخول</button>
+    </form>
+    <div id="gate-err" hidden>باسوورد غير صحيح — حاول تاني</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var H="ff9a06f5c6f67f5bee3372f4a7d7c63d48ccf6d05bf63e6ff641b535ef49f31a",g=document.getElementById('gate');
+  function unlock(){document.documentElement.classList.remove('locked');if(g&&g.parentNode)g.parentNode.removeChild(g);}
+  try{if(sessionStorage.getItem('ka_g')=='1'){unlock();return;}}catch(e){}
+  function sh(s){
+    if(!(window.crypto&&crypto.subtle))return Promise.resolve(s);
+    return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(a){
+      return Array.from(new Uint8Array(a)).map(function(x){return('0'+x.toString(16)).slice(-2)}).join('');
+    });
+  }
+  var f=document.getElementById('gate-form'),i=document.getElementById('gate-pass'),e=document.getElementById('gate-err');
+  f.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    sh(i.value).then(function(x){
+      if(x==H){try{sessionStorage.setItem('ka_g','1');}catch(err){}unlock();}
+      else{e.hidden=false;i.value='';i.focus();g.classList.add('shake');setTimeout(function(){g.classList.remove('shake');},420);}
+    });
+  });
+  i.focus();
+})();
+</script>
+
 
 <main class="sheet">
 
