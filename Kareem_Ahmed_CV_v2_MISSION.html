@@ -708,10 +708,12 @@ body.ready .r6{transition-delay:.72s}
 
 /* ═══ VAULT (projects section lock) ═══ */
 .vault{position:relative}
-.vault.locked>*:not(.vault-gate){opacity:.10;pointer-events:none!important;user-select:none!important;-webkit-user-select:none!important}
-.vault.locked>.vault-gate{display:block;position:absolute;inset:0;z-index:60;background:rgba(1,26,44,.92);pointer-events:auto}
-.vault-box{position:sticky;top:120px;margin:48px auto 0;width:min(400px,92vw);background:#04293F;
-  border:1px solid rgba(244,243,239,.16);border-top:4px solid #FBAE42;padding:34px 32px;text-align:center;
+.vault.locked>*:not(.vault-gate){display:none!important}
+.vault.locked>.vault-gate{display:flex;align-items:center;justify-content:center;min-height:320px;
+  padding:44px 12px;background:repeating-linear-gradient(-45deg,rgba(251,174,66,.05) 0 12px,transparent 12px 24px);
+  border:1px dashed rgba(244,243,239,.22);border-radius:2px;margin:6px 0 2px}
+.vault-box{width:min(400px,92vw);background:#04293F;border:1px solid rgba(244,243,239,.16);
+  border-top:4px solid #FBAE42;padding:34px 32px;text-align:center;
   box-shadow:0 30px 80px rgba(0,0,0,.5);font-family:var(--d),sans-serif}
 .vault-lock{width:46px;height:46px;margin:0 auto 16px;border:2px solid #FBAE42;border-radius:4px;position:relative}
 .vault-lock i{position:absolute;left:50%;top:11px;transform:translateX(-50%);width:16px;height:14px;
@@ -730,6 +732,7 @@ body.ready .r6{transition-delay:.72s}
 .vault-err{margin-top:13px;color:#FBAE42;font-size:.87rem}
 .vault-box.shake{animation:gshake .42s}
 @keyframes gshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-9px)}75%{transform:translateX(9px)}}
+
 </style>
 </head>
 <body>
