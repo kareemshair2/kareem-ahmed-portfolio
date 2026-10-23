@@ -706,68 +706,33 @@ body.ready .r6{transition-delay:.72s}
 .services .svc .btn.ghost{background:transparent;color:var(--amber);border:1px solid var(--amber)}
 .services .svc .btn.ghost:hover{background:var(--amber);color:#16200b}
 
-/* ═══ GATE (password lock) ═══ */
-html.locked{overflow:hidden}
-html.locked body>*:not(#gate){visibility:hidden!important}
-#gate{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;
-  background:radial-gradient(900px 420px at 50% -10%,rgba(251,174,66,.14),transparent 60%),#011A2C;
-  font-family:var(--d),sans-serif}
-.gate-card{background:#04293F;border:1px solid rgba(244,243,239,.16);border-top:4px solid #FBAE42;
-  padding:42px 40px;width:min(420px,92vw);text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.5)}
-.gate-mark{width:52px;height:52px;margin:0 auto 18px;border:2px solid #FBAE42;color:#FBAE42;
-  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.5rem}
-.gate-title{color:#F4F3EF;font-weight:800;font-size:1.3rem;margin-bottom:8px}
-.gate-sub{color:rgba(244,243,239,.55);font-size:.92rem;margin-bottom:22px}
-#gate-form{display:flex;gap:10px}
-#gate-pass{flex:1;background:#011A2C;border:1px solid rgba(244,243,239,.25);color:#F4F3EF;
+/* ═══ VAULT (projects section lock) ═══ */
+.vault{position:relative}
+.vault.locked>*:not(.vault-gate){opacity:.10;pointer-events:none!important;user-select:none!important;-webkit-user-select:none!important}
+.vault.locked>.vault-gate{display:block;position:absolute;inset:0;z-index:60;background:rgba(1,26,44,.92);pointer-events:auto}
+.vault-box{position:sticky;top:120px;margin:48px auto 0;width:min(400px,92vw);background:#04293F;
+  border:1px solid rgba(244,243,239,.16);border-top:4px solid #FBAE42;padding:34px 32px;text-align:center;
+  box-shadow:0 30px 80px rgba(0,0,0,.5);font-family:var(--d),sans-serif}
+.vault-lock{width:46px;height:46px;margin:0 auto 16px;border:2px solid #FBAE42;border-radius:4px;position:relative}
+.vault-lock i{position:absolute;left:50%;top:11px;transform:translateX(-50%);width:16px;height:14px;
+  border:2px solid #FBAE42;border-bottom:0;border-radius:8px 8px 0 0}
+.vault-lock i::after{content:"";position:absolute;left:50%;top:12px;transform:translateX(-50%);
+  width:18px;height:13px;background:#FBAE42;border-radius:2px}
+.vault-title{color:#F4F3EF;font-weight:800;font-size:1.22rem;margin-bottom:7px}
+.vault-sub{color:rgba(244,243,239,.55);font-size:.9rem;margin-bottom:20px}
+.vault-form{display:flex;gap:10px}
+.vault-pass{flex:1;background:#011A2C;border:1px solid rgba(244,243,239,.25);color:#F4F3EF;
   padding:12px 14px;font-family:var(--m),monospace;font-size:1rem;outline:none}
-#gate-pass:focus{border-color:#FBAE42}
-#gate-form button{background:#FBAE42;color:#16200b;border:0;padding:12px 22px;font-weight:800;
+.vault-pass:focus{border-color:#FBAE42}
+.vault-form button{background:#FBAE42;color:#16200b;border:0;padding:12px 22px;font-weight:800;
   font-family:var(--d),sans-serif;font-size:.95rem;cursor:pointer}
-#gate-form button:hover{opacity:.88}
-#gate-err{margin-top:14px;color:#FBAE42;font-size:.88rem}
-#gate.shake .gate-card{animation:gshake .42s}
+.vault-form button:hover{opacity:.88}
+.vault-err{margin-top:13px;color:#FBAE42;font-size:.87rem}
+.vault-box.shake{animation:gshake .42s}
 @keyframes gshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-9px)}75%{transform:translateX(9px)}}
 </style>
-
-<script>try{if(!sessionStorage.getItem('ka_g'))document.documentElement.classList.add('locked');else document.getElementById&&0;}catch(e){document.documentElement.classList.add('locked');}</script></head>
+</head>
 <body>
-<div id="gate" role="dialog" aria-modal="true" lang="ar" dir="rtl">
-  <div class="gate-card">
-    <div class="gate-mark">K</div>
-    <div class="gate-title">هذه الصفحة محمية</div>
-    <div class="gate-sub">أدخل باسوورد الوصول لمشاهدة المشاريع</div>
-    <form id="gate-form" autocomplete="off">
-      <input id="gate-pass" type="password" placeholder="الباسوورد" autocomplete="off" required>
-      <button type="submit">دخول</button>
-    </form>
-    <div id="gate-err" hidden>باسوورد غير صحيح — حاول تاني</div>
-  </div>
-</div>
-
-<script>
-(function(){
-  var H="ff9a06f5c6f67f5bee3372f4a7d7c63d48ccf6d05bf63e6ff641b535ef49f31a",g=document.getElementById('gate');
-  function unlock(){document.documentElement.classList.remove('locked');if(g&&g.parentNode)g.parentNode.removeChild(g);}
-  try{if(sessionStorage.getItem('ka_g')=='1'){unlock();return;}}catch(e){}
-  function sh(s){
-    if(!(window.crypto&&crypto.subtle))return Promise.resolve(s);
-    return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(a){
-      return Array.from(new Uint8Array(a)).map(function(x){return('0'+x.toString(16)).slice(-2)}).join('');
-    });
-  }
-  var f=document.getElementById('gate-form'),i=document.getElementById('gate-pass'),e=document.getElementById('gate-err');
-  f.addEventListener('submit',function(ev){
-    ev.preventDefault();
-    sh(i.value).then(function(x){
-      if(x==H){try{sessionStorage.setItem('ka_g','1');}catch(err){}unlock();}
-      else{e.hidden=false;i.value='';i.focus();g.classList.add('shake');setTimeout(function(){g.classList.remove('shake');},420);}
-    });
-  });
-  i.focus();
-})();
-</script>
-
 
 <!-- Boot -->
 <div class="boot" id="boot">
@@ -1190,6 +1155,8 @@ html.locked body>*:not(#gate){visibility:hidden!important}
     </div>
 
     <div class="pgrid">
+<div class="vault locked" data-vault>
+
 
       <article class="pfeature reveal" data-idx="01">
         <div class="pf-media" role="img" aria-label="Customer analytics dashboard screenshot">
@@ -2243,7 +2210,21 @@ html.locked body>*:not(#gate){visibility:hidden!important}
         <span class="go">Open profile →</span>
       </a>
 
-    </div>
+    
+<div class="vault-gate">
+  <div class="vault-box">
+    <div class="vault-lock"><i></i></div>
+    <div class="vault-title">هذا القسم محمي</div>
+    <div class="vault-sub">اكتب باسوورد لعرض المشاريع وفتح روابطها</div>
+    <form class="vault-form" autocomplete="off">
+      <input class="vault-pass" type="password" placeholder="الباسوورد" autocomplete="off" required>
+      <button type="submit">فتح</button>
+    </form>
+    <div class="vault-err" hidden>باسوورد غير صحيح — حاول تاني</div>
+  </div>
+</div>
+</div>
+
 <div class="catalog" id="catalog">
       <div class="sec-head reveal">
         <div class="sec-code"><span>04·B / Repository Log</span><span class="ln"></span><span class="dim">42 public repositories · 48 builds + 10 documents indexed · 2 GitHub accounts</span></div>
@@ -2255,6 +2236,8 @@ html.locked body>*:not(#gate){visibility:hidden!important}
       </div>
 
       <div class="cat-groups">
+<div class="vault locked" data-vault>
+
       <div class="cat-group reveal d0">
         <div class="cat-ghead"><span>Dashboards &amp; Analytics</span><i></i><b>12 entries</b></div>
         <div class="cat-rows">
@@ -2638,7 +2621,21 @@ html.locked body>*:not(#gate){visibility:hidden!important}
         </a>
         </div>
       </div>
-      </div>
+      
+<div class="vault-gate">
+  <div class="vault-box">
+    <div class="vault-lock"><i></i></div>
+    <div class="vault-title">هذا القسم محمي</div>
+    <div class="vault-sub">اكتب باسوورد لعرض المشاريع وفتح روابطها</div>
+    <form class="vault-form" autocomplete="off">
+      <input class="vault-pass" type="password" placeholder="الباسوورد" autocomplete="off" required>
+      <button type="submit">فتح</button>
+    </form>
+    <div class="vault-err" hidden>باسوورد غير صحيح — حاول تاني</div>
+  </div>
+</div>
+</div>
+
     </div>
 
   </div>
@@ -3025,5 +3022,38 @@ html.locked body>*:not(#gate){visibility:hidden!important}
 })();
 </script>
 
+
+<script>
+(function(){
+  var H="ff9a06f5c6f67f5bee3372f4a7d7c63d48ccf6d05bf63e6ff641b535ef49f31a";
+  var vaults=document.querySelectorAll('[data-vault]');
+  function unlockAll(){
+    Array.prototype.forEach.call(vaults,function(v){
+      v.classList.remove('locked');
+      var g=v.querySelector('.vault-gate');
+      if(g&&g.parentNode)g.parentNode.removeChild(g);
+    });
+  }
+  try{if(sessionStorage.getItem('ka_vp')=='1'){unlockAll();return;}}catch(e){}
+  function sh(s){
+    if(!(window.crypto&&crypto.subtle))return Promise.resolve(s);
+    return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(a){
+      return Array.prototype.map.call(new Uint8Array(a),function(x){return('0'+x.toString(16)).slice(-2)}).join('');
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.vault-form'),function(f){
+    f.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var i=f.querySelector('.vault-pass');
+      var box=f.closest('.vault-box');
+      var e=box.querySelector('.vault-err');
+      sh(i.value).then(function(x){
+        if(x==H){try{sessionStorage.setItem('ka_vp','1');}catch(err){}unlockAll();}
+        else{e.hidden=false;i.value='';i.focus();box.classList.add('shake');setTimeout(function(){box.classList.remove('shake');},420);}
+      });
+    });
+  });
+})();
+</script>
 </body>
 </html>
